@@ -1,0 +1,6 @@
+# Temporary: keep the site out of search results until launch.
+# ON 7 OCTOBER: delete the two lines below and replace with:
+#   User-agent: *
+#   Allow: /
+User-agent: *
+Disallow: /
