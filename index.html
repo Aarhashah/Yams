@@ -103,12 +103,13 @@ h1 span{display:block;color:var(--blue);transition:color .8s}
 .find svg{width:20px;height:20px;fill:currentColor;display:block;flex:0 0 auto}
 
 @media (max-width:620px){
-  .top{flex-direction:row;align-items:flex-start;gap:16px}
-  .circle{order:0}                      /* photo stays on the right */
+  .top{flex-direction:row;align-items:flex-start;gap:18px}
+  .circle{order:-1}                     /* photo on the left, same as desktop */
   .head{flex:1 1 auto}
+  .sub{font-size:16px;max-width:none}
 }
 @media (max-width:560px){
-  .circle{width:clamp(96px,27vw,150px);height:clamp(96px,27vw,150px)}
+  .circle{width:clamp(124px,38vw,210px);height:clamp(124px,38vw,210px)}
 }
 @media (max-width:640px){
   .flag{grid-template-columns:1fr 1fr}
