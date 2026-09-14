@@ -103,10 +103,12 @@ h1 span{display:block;color:var(--blue);transition:color .8s}
 .find svg{width:20px;height:20px;fill:currentColor;display:block;flex:0 0 auto}
 
 @media (max-width:620px){
-  .top{flex-direction:column;gap:20px}
+  .top{flex-direction:row;align-items:flex-start;gap:16px}
+  .circle{order:0}                      /* photo stays on the right */
+  .head{flex:1 1 auto}
 }
 @media (max-width:560px){
-  .circle{width:clamp(120px,34vw,180px);height:clamp(120px,34vw,180px)}
+  .circle{width:clamp(96px,27vw,150px);height:clamp(96px,27vw,150px)}
 }
 @media (max-width:640px){
   .flag{grid-template-columns:1fr 1fr}
@@ -116,7 +118,7 @@ h1 span{display:block;color:var(--blue);transition:color .8s}
 }
 @media (max-width:400px){
   .flag{grid-template-columns:1fr}
-  .flag div{border-left:0;border-top:1px solid rgba(250,246,236,.2)}
+  .flag div:nth-child(n){border-left:0;border-top:1px solid rgba(250,246,236,.2)}
   .flag div:first-child{border-top:0}
 }
 @keyframes settle{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
@@ -161,7 +163,7 @@ h1 span{display:block;color:var(--blue);transition:color .8s}
     <div class="panel is-on copy" id="p-real" role="tabpanel">
       <p>I ask way too many questions. To everyone around me, about everything around me.</p>
       <p>Then I go read, listen, dig, and fact check, until I understand something well enough to make it everyone's problem too.</p>
-      <p>That's how YAMS was built. There are plenty of modern problems (that everyone should be sus about), and they need modern solutions, not fancy ones. <span class="fig">we'll figure together.</span></p>
+      <p>That's how YAMS was built.<br>There are plenty of modern problems (that everyone should be sus about), and they need modern solutions, not fancy ones. <span class="fig">we'll figure together.</span></p>
     </div>
     <div class="panel copy" id="p-pro" role="tabpanel">
       <p>I am an inquisitive person who thinks in frameworks. I like research, analysis, and the part where you keep digging until something finally makes sense, and hopefully makes an impact.</p>
