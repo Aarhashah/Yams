@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>YAMS by Aarha</title>
-<meta name="description" content="YAMS — Your Ally for Modern Sustainability. Aarha's space for sustainability, research, writing and questions worth asking.">
+<meta name="description" content="YAMS, Your Ally for Modern Sustainability. Aarha's space for sustainability, research, writing and questions worth asking.">
 <meta name="theme-color" content="#FAF6EC">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 <style>
 :root{
   --paper:#FAF6EC; --ink:#141509; --olive:#4E6141; --olive-deep:#1E2618;
-  --ochre:#E9A81D; --blue:#2440E8; --sage:#D9DFC6; --cream:#FFF9EC;
+  --ochre:#E9A81D; --ochre-deep:#B8791C; --blue:#2440E8; --sage:#D9DFC6; --cream:#FFF9EC;
   --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
   --serif:"Instrument Serif",Georgia,serif;
   --body:"Satoshi",system-ui,sans-serif;
@@ -91,6 +91,7 @@ h1 span{display:block;color:var(--blue);transition:color .8s}
   background:var(--blue);border-radius:999px;padding:12px 22px;transition:transform .25s,opacity .25s}
 .hi.is-pro .more{background:var(--ochre);color:var(--ink)}
 .more:hover{transform:translateY(-2px);opacity:.92}
+.more.alt{margin-left:10px}
 
 .flag{display:grid;grid-template-columns:repeat(4,1fr);margin-top:26px;
       background:var(--olive);color:var(--paper);border-radius:12px;overflow:hidden;transition:background .8s}
@@ -99,11 +100,11 @@ h1 span{display:block;color:var(--blue);transition:color .8s}
 .flag div:first-child{border-left:0}
 .flag b{display:block;font-weight:700;font-size:15.5px;margin-bottom:5px}
 .flag i{font-style:normal;opacity:.84;display:block}
-@media (min-width:900px){.flag b,.flag i{white-space:nowrap}}
+@media (min-width:460px){.flag b,.flag i{white-space:nowrap}}
 
 .find{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:clamp(22px,2.6vw,34px);
       font-family:var(--display);font-weight:700;font-size:clamp(15px,1.3vw,18px);letter-spacing:-.02em}
-.find a{display:inline-flex;align-items:center;gap:8px;line-height:1;color:var(--blue);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:3px;transition:border-color .2s}
+.find a{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;white-space:nowrap;line-height:1;color:var(--blue);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:3px;transition:border-color .2s}
 .hi.is-pro .find a{color:var(--ochre)}
 .find a:hover{border-color:currentColor}
 .find svg{width:20px;height:20px;fill:currentColor;display:block;flex:0 0 auto}
@@ -117,6 +118,11 @@ h1 span{display:block;color:var(--blue);transition:color .8s}
 }
 @media (max-width:560px){
   .circle{width:clamp(124px,38vw,210px);height:clamp(124px,38vw,210px)}
+}
+@media (max-width:900px){
+  .flag{grid-template-columns:1fr 1fr}
+  .flag div:nth-child(odd){border-left:0}
+  .flag div:nth-child(n+3){border-top:1px solid rgba(250,246,236,.2)}
 }
 @media (max-width:640px){
   .flag{grid-template-columns:1fr 1fr}
@@ -162,6 +168,12 @@ body.on-pf .hi{display:none}
 .tl__card i:last-child{opacity:.72;margin-top:auto;padding-top:6px}
 
 /* filters */
+.pfband{margin-top:clamp(40px,4.6vw,64px);border-top:1.5px solid rgba(20,21,9,.18);padding-top:clamp(22px,2.6vw,32px);
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.pfband p{font-family:var(--display);font-weight:700;font-size:clamp(19px,1.9vw,25px);letter-spacing:-.03em}
+.pfband button{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.02em;background:var(--blue);
+  color:#fff;border:0;border-radius:999px;padding:13px 22px;cursor:pointer}
+.pfband button:hover{background:var(--ink)}
 .pf__filterlabel{font-family:var(--display);font-weight:800;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.03em;margin-top:clamp(34px,4vw,54px)}
 .pf__filterlabel em{font-style:normal;color:var(--blue)}
 .lens{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
@@ -228,7 +240,7 @@ body.on-pf .hi{display:none}
   font-family:var(--display);font-weight:700;font-size:12.5px;letter-spacing:-.01em;line-height:1.25}
 .wt .ph{position:absolute;inset:0;display:grid;place-items:center;color:rgba(250,246,236,.5);font-size:12px;text-align:center;padding:14px}
 .socrow{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px;font-family:var(--display);font-weight:700;font-size:17px}
-.socrow a{display:inline-flex;align-items:center;gap:8px;line-height:1;color:var(--ochre);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:3px}
+.socrow a{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;white-space:nowrap;line-height:1;color:var(--ochre);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:3px}
 .socrow a:hover{border-color:var(--ochre)}
 .socrow svg{width:20px;height:20px;fill:currentColor;display:block}
 
@@ -254,6 +266,119 @@ body.on-pf .hi{display:none}
 @media (max-width:460px){
   .grid{grid-template-columns:1fr}
   .tile{min-height:0}
+}
+
+/* ===== ROOM 03 · HOW I CAN HELP ===== */
+.hp{display:none;background:var(--paper);color:var(--ink);min-height:100svh;padding:clamp(40px,5vw,70px) 0 clamp(56px,6vw,90px)}
+body.on-hp .hp{display:block}
+body.on-hp .hi,body.on-hp .pf,body.on-hp .fm{display:none}
+.hp .wrap,.fm .wrap{padding-top:0;padding-bottom:0}
+.hp h2{font-family:var(--display);font-weight:800;font-stretch:84%;font-size:clamp(40px,6.6vw,92px);letter-spacing:-.05em;line-height:.88}
+.hp h2 span{color:var(--olive)}
+.hp .aside{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.1vw,27px);color:var(--olive);margin-top:12px}
+.step{font-family:var(--display);font-weight:800;font-size:clamp(20px,2.1vw,28px);letter-spacing:-.03em;margin-top:clamp(40px,4.6vw,64px)}
+.step em{font-style:normal;color:var(--ochre-deep)}
+
+/* who are you */
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.5vw,20px);margin-top:48px}
+.wcard{position:relative;text-align:left;border:0;cursor:pointer;border-radius:14px;padding:50px 22px 24px;
+  font-family:inherit;color:var(--cream);min-height:206px;display:flex;flex-direction:column;gap:9px;
+  transition:background .35s,transform .3s cubic-bezier(.16,1,.3,1),color .35s}
+.wcard.w1{background:#26301F}
+.wcard.w2{background:#3B4A2D}
+.wcard.w3{background:#55683F}
+.wcard:hover{transform:translateY(-4px)}
+.wcard .ring{position:absolute;top:-28px;left:22px;width:58px;height:58px;border-radius:50%;background:var(--paper);
+  border:2px solid var(--ink);display:grid;place-items:center;transition:background .35s,border-color .35s}
+.wcard .ring svg{width:27px;height:27px;stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.wcard b{font-family:var(--display);font-weight:700;font-size:clamp(18px,1.6vw,23px);letter-spacing:-.03em;line-height:1.12;min-height:2.24em}
+.wcard i{font-style:normal;font-size:14.5px;line-height:1.5;opacity:.9}
+.wcard[aria-selected="true"]{background:var(--ochre);color:var(--ink)}
+.wcard[aria-selected="true"] .ring{background:var(--ink);border-color:var(--ink)}
+.wcard[aria-selected="true"] .ring svg{stroke:var(--ochre)}
+.wcard[aria-selected="true"]::after{content:"";position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);
+  width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:15px solid var(--ochre)}
+.wcard:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* offerings: ochre head, dark green body */
+.offs{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:clamp(12px,1.5vw,20px);margin-top:18px}
+.off{border-radius:14px;overflow:hidden;display:flex;flex-direction:column;background:#26301F}
+.off .head{background:var(--ochre);color:var(--ink);padding:20px 22px 18px;min-height:178px}
+.off .no{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.02em;opacity:.7}
+.off b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(19px,1.6vw,23px);letter-spacing:-.03em;line-height:1.14;margin-top:6px}
+.off .one{display:block;font-family:var(--serif);font-style:italic;font-size:16.5px;line-height:1.3;margin-top:8px}
+.off .body{padding:6px 22px 26px;color:var(--cream);display:flex;flex-direction:column;flex:1}
+.off ul{margin-bottom:12px}
+.off ul{list-style:none;padding:0;margin:0}
+.off li{font-size:14.5px;line-height:1.5;padding:12px 0 12px 18px;position:relative;border-bottom:1px solid rgba(250,246,236,.16)}
+.off li:last-child{border-bottom:0}
+.off li::before{content:"";position:absolute;left:0;top:19px;width:6px;height:6px;border-radius:50%;background:var(--ochre)}
+.off .go{margin-top:auto;padding-top:0;align-self:flex-start;font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;
+  background:var(--ochre);color:var(--ink);border:0;border-radius:999px;padding:12px 22px;cursor:pointer}
+.off .go:hover{background:var(--cream)}
+
+/* ===== ROOM 04 · THE FORM ===== */
+.fm{display:none;background:var(--olive-deep);color:var(--cream);min-height:100svh;padding:clamp(40px,5vw,70px) 0 clamp(56px,6vw,90px)}
+body.on-fm .fm{display:block}
+body.on-fm .hi,body.on-fm .pf,body.on-fm .hp{display:none}
+.fm .backbar button{color:var(--sage)}
+.fm .backbar button:hover{color:var(--ochre)}
+.fmtop{display:flex;align-items:center;gap:clamp(20px,3.4vw,52px)}
+.fmpic{flex:0 0 auto;width:clamp(120px,19vw,250px);height:clamp(120px,19vw,250px);border-radius:50%;overflow:hidden;background:var(--sage)}
+.fmpic img{width:100%;height:100%;object-fit:cover;display:block}
+.fm h2{font-family:var(--display);font-weight:800;font-stretch:84%;font-size:clamp(34px,5.6vw,80px);letter-spacing:-.05em;line-height:.9}
+.fm h2 span{display:block;color:var(--ochre)}
+.fm .aside{font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.9vw,25px);margin-top:14px;max-width:none}
+@media (min-width:901px){.fm .aside{white-space:nowrap}}
+
+form.yf{margin-top:clamp(30px,3.4vw,46px);display:grid;gap:18px;max-width:880px}
+.yf .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.yf label.lb{display:block;font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;margin-bottom:8px}
+.yf .hint{display:block;font-family:var(--body);font-weight:400;font-size:13px;opacity:.6;margin-top:6px;letter-spacing:0}
+.yf input,.yf select,.yf textarea{width:100%;font-family:var(--body);font-size:16px;color:var(--ink);
+  background:var(--cream);border:1.5px solid transparent;border-radius:10px;padding:14px 15px}
+.yf select:invalid,.yf select.empty{color:#7B7A6E}
+.yf input:focus,.yf select:focus,.yf textarea:focus{outline:0;border-color:var(--ochre)}
+.yf input.bad,.yf select.bad,.yf textarea.bad{border-color:#E4572E;background:#FFF1EC}
+.yf textarea{min-height:118px;resize:vertical}
+.yf .pills{display:flex;gap:9px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px}
+.yf .pills label{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;cursor:pointer;white-space:nowrap;flex:0 0 auto;
+  background:rgba(250,246,236,.08);border:1.5px solid rgba(250,246,236,.32);border-radius:999px;padding:11px 16px}
+.yf .pills label.on{background:var(--ochre);border-color:var(--ochre);color:var(--ink)}
+.yf .pills input{width:auto;padding:0;accent-color:var(--ink)}
+.yf .check{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;line-height:1.45;margin-top:4px}
+.yf .check input{width:18px;height:18px;margin-top:2px;accent-color:var(--ochre)}
+.yf .sendwrap{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:16px 22px}
+.yf button.send{font-family:var(--display);font-weight:700;font-size:17.5px;letter-spacing:-.02em;
+  background:var(--ochre);color:var(--ink);border:0;border-radius:999px;padding:15px 28px;cursor:pointer}
+.yf button.send:hover{background:var(--cream)}
+.yf .fine{font-family:var(--serif);font-style:italic;font-size:17px;opacity:.9;max-width:44ch}
+.yf .err{display:none;background:#E4572E;color:#fff;border-radius:10px;padding:14px 16px;font-size:15px;line-height:1.45}
+.yf .err.on{display:block}
+.modal{position:fixed;inset:0;z-index:600;display:none;place-items:center;padding:22px;
+  background:rgba(20,21,9,.62);backdrop-filter:blur(3px)}
+.modal.on{display:grid}
+.modal__box{background:var(--ochre);color:var(--ink);border-radius:16px;max-width:460px;padding:30px 30px 26px;text-align:left}
+.modal__box b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(26px,3.4vw,38px);letter-spacing:-.04em;line-height:1}
+.modal__box p{font-size:16.5px;line-height:1.55;margin-top:14px}
+.modal__box button{margin-top:20px;font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.02em;
+  background:var(--ink);color:var(--ochre);border:0;border-radius:999px;padding:13px 24px;cursor:pointer}
+.modal__box button:hover{background:var(--olive-deep)}
+.yf .ok{display:none;background:var(--ochre);color:var(--ink);border-radius:12px;padding:24px 26px;font-size:16.5px;line-height:1.55}
+.yf.sent .ok{display:block}
+.yf.sent .hideme{display:none}
+
+@media (max-width:640px){
+  .who{grid-template-columns:1fr;gap:38px;margin-top:40px}
+  .who > #offs{margin-top:-22px}
+  .who > #offs .step{margin-top:22px !important;font-size:19px}
+  .wcard{min-height:0;padding:46px 20px 22px}
+  .wcard b{min-height:0}
+  .off .head{min-height:0}
+  .yf .pills label{font-size:13px;padding:10px 13px}
+  .offs{grid-template-columns:1fr}
+  .yf .row{grid-template-columns:1fr}
+  .fm .aside{max-width:none}
 }
 
 @keyframes settle{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
@@ -298,12 +423,14 @@ body.on-pf .hi{display:none}
       <p>Then I go read, listen, dig, and fact check, until I understand something well enough to make it everyone's problem too.</p>
       <p>That's how YAMS was built.<br>There are plenty of modern problems (that everyone should be sus about), and they need modern solutions, not fancy ones. <span class="fig">we'll figure together.</span></p>
       <button class="more">interested in my skills &amp; work? &rarr;</button>
+      <button class="more alt tohelp">how can I help you? &rarr;</button>
     </div>
     <div class="panel copy" id="p-pro" role="tabpanel">
       <p>I am an inquisitive person who thinks in frameworks. I like research, analysis, and the part where you keep digging until something finally makes sense, and hopefully makes an impact.</p>
       <p>I work across decarbonisation, circular economy, sustainable materials, reporting and regulation. Sounds fancy? It is.</p>
       <p>But what I enjoy the most is taking the fancy out of it. Making it modern-day relatable, so anyone can understand it, and actually do something about it.</p>
       <button class="more">interested in my skills &amp; work? &rarr;</button>
+      <button class="more alt tohelp">how can I help you? &rarr;</button>
     </div>
   </div>
 
@@ -324,7 +451,7 @@ body.on-pf .hi{display:none}
 <!-- ========== PORTFOLIO ========== -->
 <section class="pf" id="work">
  <div class="wrap">
-  <div class="backbar"><button id="pfBack">&larr; back to profile</button></div>
+  <div class="backbar"><button class="goProfile">&larr; back to profile</button></div>
   <h2>AARHA'S<br><span>PORTFOLIO</span></h2>
   <p class="aside">explore my skills, expertise and experience</p>
 
@@ -339,6 +466,11 @@ body.on-pf .hi{display:none}
   </div>
 
   <div id="view"></div>
+
+  <div class="pfband">
+    <p>Want to collaborate?</p>
+    <button class="tohelp">how I can help you &rarr;</button>
+  </div>
  </div>
 </section>
 
@@ -346,6 +478,111 @@ body.on-pf .hi{display:none}
   <button class="close" id="sheetClose" aria-label="Close">&#10005;</button>
   <div class="sheet__in" id="sheetIn"></div>
 </div>
+
+<!-- ========== HOW I CAN HELP ========== -->
+<section class="hp" id="help">
+ <div class="wrap">
+  <div class="backbar"><button class="goProfile">&larr; back to profile</button></div>
+  <h2>HOW I CAN<br><span>HELP YOU</span></h2>
+  <p class="aside">modern problems? modern solutions. we'll figure.</p>
+
+  <p class="step">first, <em>who are you?</em></p>
+  <div class="who" role="tablist" aria-label="Who are you"></div>
+
+  <div id="offs"></div>
+  <div id="offsHome"></div>
+ </div>
+</section>
+
+<!-- ========== THE FORM ========== -->
+<section class="fm" id="form">
+ <div class="wrap">
+  <div class="backbar"><button id="fmBack">&larr; back to what I can help with</button></div>
+  <div class="fmtop">
+    <div class="fmpic"><img src="circle-help.jpg" alt="Aarha working" width="800" height="800"></div>
+    <div>
+      <h2>LET'S<span>COLLABORATE</span></h2>
+      <p class="aside">fill in the basics and I'll reach out to take it further</p>
+    </div>
+  </div>
+
+  <div class="modal" id="sentModal" role="dialog" aria-modal="true">
+    <div class="modal__box">
+      <b>Message received!</b>
+      <p>Super excited to receive this. I'll revert soon and <b style="display:inline;font-size:inherit;letter-spacing:0">we'll figure</b> how to make it work!</p>
+      <button type="button" id="modalClose">lovely, thanks</button>
+    </div>
+  </div>
+
+  <form class="yf" id="talkForm" novalidate>
+    <div class="ok">
+      <b>Filed.</b> Super excited to receive this. I'll revert soon and we'll figure out how to make it work.
+    </div>
+    <input type="hidden" name="access_key" value="28f3eaaa-9149-40ec-b0b0-ec89b91e3ec4">
+    <input type="hidden" name="subject" value="New enquiry from aaryousus.com">
+    <input type="hidden" name="from_name" value="YAMS website">
+    <input type="checkbox" name="botcheck" style="display:none">
+
+    <div class="err" id="formErr"></div>
+
+    <div class="hideme">
+      <label class="lb">which of these sounds like you?</label>
+      <div class="pills" id="whoPills">
+        <label class="on"><input type="radio" name="who" value="one person" checked> one person</label>
+        <label><input type="radio" name="who" value="building something"> building something</label>
+        <label><input type="radio" name="who" value="an organisation"> an organisation</label>
+      </div>
+    </div>
+
+    <div class="hideme">
+      <label class="lb" for="ab">tell me a little more about you</label>
+      <select id="ab" name="about_you" class="empty"></select>
+    </div>
+
+    <div class="row hideme">
+      <div><label class="lb" for="nm">your name</label><input id="nm" name="name" autocomplete="name"></div>
+      <div><label class="lb" for="em">your email</label>
+        <input id="em" name="email" type="email" autocomplete="email">
+        <span class="hint">do check it, it's how I'll reach you</span></div>
+    </div>
+
+    <div class="row hideme">
+      <div><label class="lb" for="ph">phone <span class="hint" style="display:inline;margin:0">optional</span></label>
+        <input id="ph" name="phone" inputmode="tel" autocomplete="tel"></div>
+      <div><label class="lb" for="tp">what would you like to talk about?</label>
+        <select id="tp" name="topic" class="empty"></select></div>
+    </div>
+
+    <div class="hideme">
+      <label class="lb" for="ms">tell me a bit more</label>
+      <textarea id="ms" name="message" placeholder="a line or two on what you're looking to work through"></textarea>
+    </div>
+
+    <div class="hideme">
+      <label class="lb" for="tm">preferred time to chat, Indian Standard Time</label>
+      <select id="tm" name="preferred_time" class="empty">
+        <option value="">please select an option</option>
+        <option>Weekdays, 6 to 9 pm IST</option>
+        <option>Saturdays, 12 to 2 pm IST</option>
+        <option>Saturdays, 2 to 5 pm IST</option>
+        <option>Sundays, 12 to 2 pm IST</option>
+        <option>Flexible</option>
+      </select>
+      <span class="hint">this doesn't block a day or time, it just tells me what suits you</span>
+    </div>
+
+    <label class="check hideme">
+      <input type="checkbox" name="subscribe" value="yes" checked>
+      <span>Send me the Sus Blogs. Myth-busting, greenwashing, &amp; the questions nobody's asking!</span>
+    </label>
+
+    <div class="sendwrap hideme">
+      <button class="send" type="submit">send it &rarr;</button>
+      <p class="fine">Super excited to receive this. I'll revert soon<br>and <span style="color:var(--ochre)">we'll figure</span> how to make it work!</p>
+    </div>
+  </form>
+ </div>
+</section>
 
 <script>
 const COPY={
@@ -608,8 +845,186 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet();});
 document.querySelectorAll('.more').forEach(b=>{
   b.addEventListener('click',()=>{document.body.classList.add('on-pf');window.scrollTo(0,0);});
 });
-document.getElementById('pfBack').addEventListener('click',()=>{
-  document.body.classList.remove('on-pf');window.scrollTo(0,0);
+
+
+
+
+
+/* ===================== HOW I CAN HELP ===================== */
+const WHOS=[
+ {k:"one",ic:'<circle cx="12" cy="7.5" r="3.6"/><path d="M4.5 20.5c0-4.1 3.4-6.8 7.5-6.8s7.5 2.7 7.5 6.8"/>',
+  b:"You're one person",i:"student, professional, creator, or simply curious (sus)",
+  about:["Student","Professional","Creator","Simply curious (sus)"]},
+ {k:"build",ic:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 1 3.5 10.9V16h-7v-2.1A6 6 0 0 1 12 3Z"/>',
+  b:"You're building something",i:"founder, small brand, early team",
+  about:["Founder","Small brand","Early team"]},
+ {k:"org",ic:'<path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9.5 21v-5h5v5M9.5 11h1.5M13 11h1.5"/>',
+  b:"You're an organisation",i:"a company, an MSME, or a team with a deadline",
+  about:["A company","An MSME","A team with a deadline"]}
+];
+
+const OFFERS={
+ one:[
+  {n:"\u201cwhere do I start?\u201d, or a second opinion",
+   one:"finding your place in sustainability, consulting, or both",
+   l:["Where your degree and skills already fit, and what's worth learning next",
+      "What these roles actually look like",
+      "An honest read on trends and fads",
+      "A 30 or 90 day action plan to get going"]},
+  {n:"\u201chow do I talk or write about this online?\u201d",
+   one:"building your own voice, on sustainability or otherwise",
+   l:["Finding your angle, and the formats that suit it: reels, carousels, blogs, long form",
+      "Ideation and a content plan you can realistically keep up with",
+      "An analysis of best practices, and what will hold up before you post it"]}
+ ],
+ build:[
+  {n:"\u201chow does this matter for us?\u201d",
+   one:"where sustainability affects your brand and business",
+   l:["The regulations that apply to you, in plain terms",
+      "How to position yourself without greenwashing",
+      "What to prioritize &amp; act on"]},
+  {n:"\u201cwhat is everyone else doing?\u201d",
+   one:"benchmarking competitors &amp; materials",
+   l:["Industry best practices, and where you stand",
+      "Sustainable materials analysis, and how you could use them",
+      "A 30 or 90 day roadmap, or longer if the work needs it"]},
+  {n:"\u201cmake our content foolproof\u201d",
+   one:"review your content, or collaborate",
+   l:["Collaboration on content and campaigns",
+      "Working with your teams to review or build your websites, posts and pitches",
+      "Language that works for regulators and stakeholders"]}
+ ],
+ org:[
+  {n:"\u201chow do we keep up with trends &amp; laws?\u201d",
+   one:"assessing your products and industry",
+   l:["Regulations &amp; disclosures that matter for you",
+      "How your products and claims look to the world",
+      "A priority action plan to keep up"]},
+  {n:"\u201cwhat is the market doing?\u201d",
+   one:"landscaping peers &amp; regulations",
+   l:["Competitors benchmarked on exhaustive metrics",
+      "Regulatory, supplier and materials landscaping",
+      "A strategy roadmap with key action items and priority next steps"]},
+  {n:"\u201ccommunicating our brand\u201d",
+   one:"posts, reports, websites... let's collab",
+   l:["Polishing or building your reports, websites, blogs and press releases so nothing fails scrutiny",
+      "LinkedIn and Instagram content scripting and collabs"]}
+ ]
+};
+const WHOLABEL={one:"one person",build:"building something",org:"an organisation"};
+const clean=s=>s.replace(/[\u201c\u201d"]/g,'');
+
+const whoEl=document.querySelector('.who'), offsEl=document.getElementById('offs');
+whoEl.innerHTML=WHOS.map((w,n)=>'<button class="wcard w'+(n+1)+'" role="tab" aria-selected="false" data-a="'+w.k+'">'+
+ '<span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true">'+w.ic+'</svg></span>'+
+ '<b>'+w.b+'</b><i>'+w.i+'</i></button>').join('');
+
+function renderOffers(a){
+  offsEl.innerHTML='<p class="step" style="margin-top:clamp(34px,3.8vw,50px)">then, <em>here is what I can solve</em></p>'+
+   '<div class="offs">'+OFFERS[a].map((o,n)=>
+    '<div class="off"><div class="head"><span class="no">0'+(n+1)+'</span><b>'+o.n+'</b>'+
+    '<span class="one">'+o.one+'</span></div><div class="body"><ul>'+
+    o.l.map(x=>'<li>'+x+'</li>').join('')+'</ul>'+
+    '<button class="go" data-a="'+a+'" data-t="'+clean(o.n)+'">interested?</button></div></div>').join('')+'</div>';
+  offsEl.querySelectorAll('.go').forEach(g=>g.addEventListener('click',()=>openForm(g.dataset.a,g.dataset.t)));
+}
+
+const offsHome=document.getElementById('offsHome');
+function placeOffers(card){
+  /* on a narrow screen the offerings sit directly under the card you tapped */
+  if(window.innerWidth<=640){ whoEl.insertBefore(offsEl,card.nextSibling); }
+  else { offsHome.parentNode.insertBefore(offsEl,offsHome); }
+}
+document.querySelectorAll('.wcard').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const wasOn=b.getAttribute('aria-selected')==='true';
+    document.querySelectorAll('.wcard').forEach(x=>x.setAttribute('aria-selected','false'));
+    if(wasOn){offsEl.innerHTML='';return;}          /* click again to collapse */
+    b.setAttribute('aria-selected','true');
+    placeOffers(b);
+    renderOffers(b.dataset.a);
+  });
+});
+window.addEventListener('resize',()=>{
+  const on=document.querySelector('.wcard[aria-selected="true"]');
+  if(on) placeOffers(on);
+});
+
+/* ---------- the form ---------- */
+const topicSel=document.getElementById('tp'), aboutSel=document.getElementById('ab'),
+      timeSel=document.getElementById('tm'), errBox=document.getElementById('formErr');
+
+function markEmpty(sel){sel.classList.toggle('empty',sel.value==='');}
+[topicSel,aboutSel,timeSel].forEach(s=>s.addEventListener('change',()=>{markEmpty(s);s.classList.remove('bad');}));
+
+function fillFor(a,chosenTopic){
+  const w=WHOS.find(x=>x.k===a);
+  aboutSel.innerHTML='<option value="">please select an option</option>'+w.about.map(t=>'<option>'+t+'</option>').join('');
+  topicSel.innerHTML='<option value="">please select an option</option>'+OFFERS[a].map(o=>'<option>'+clean(o.n)+'</option>').join('');
+  if(chosenTopic){[...topicSel.options].forEach(o=>{if(o.text===chosenTopic)topicSel.value=o.text;});}
+  markEmpty(aboutSel);markEmpty(topicSel);
+  document.querySelectorAll('#whoPills label').forEach(l=>{
+    const on=l.querySelector('input').value===WHOLABEL[a];
+    l.classList.toggle('on',on); l.querySelector('input').checked=on;
+  });
+}
+document.querySelectorAll('#whoPills input').forEach(r=>r.addEventListener('change',()=>{
+  fillFor(Object.keys(WHOLABEL).find(x=>WHOLABEL[x]===r.value));
+}));
+fillFor('one');
+
+function openForm(a,topic){
+  fillFor(a,topic);
+  document.body.classList.remove('on-hp','on-pf');
+  document.body.classList.add('on-fm');
+  window.scrollTo(0,0);
+}
+
+document.getElementById('talkForm').addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const f=ev.target, problems=[];
+  const nm=f.name_, name=document.getElementById('nm'), em=document.getElementById('em'),
+        ph=document.getElementById('ph'), ms=document.getElementById('ms');
+  [name,em,ms,aboutSel,topicSel,timeSel,ph].forEach(el=>el.classList.remove('bad'));
+
+  if(!name.value.trim()){problems.push('your name');name.classList.add('bad');}
+  if(!em.value.trim()){problems.push('your email');em.classList.add('bad');}
+  else if(!/^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(em.value.trim())){problems.push('a valid email address');em.classList.add('bad');}
+  if(ph.value.trim() && !/^[0-9+()\s-]{6,}$/.test(ph.value.trim())){problems.push('a phone number with digits only');ph.classList.add('bad');}
+  if(!aboutSel.value){problems.push('a little more about you');aboutSel.classList.add('bad');}
+  if(!topicSel.value){problems.push('what you would like to talk about');topicSel.classList.add('bad');}
+  if(!ms.value.trim()){problems.push('a bit more detail');ms.classList.add('bad');}
+  if(!timeSel.value){problems.push('a preferred time');timeSel.classList.add('bad');}
+
+  if(problems.length){
+    errBox.innerHTML='Almost. Still need '+problems.join(', ')+'.';
+    errBox.classList.add('on');
+    errBox.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  errBox.classList.remove('on');
+  const data=Object.fromEntries(new FormData(f));
+  try{
+    await fetch('https://api.web3forms.com/submit',{method:'POST',
+      headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)});
+  }catch(e){}
+  f.classList.add('sent');
+  document.getElementById('sentModal').classList.add('on');
+  window.scrollTo(0,0);
+});
+document.getElementById('modalClose').addEventListener('click',()=>{
+  document.getElementById('sentModal').classList.remove('on');
+});
+
+/* ---------- room switching ---------- */
+document.querySelectorAll('.tohelp').forEach(b=>b.addEventListener('click',()=>{
+  document.body.classList.remove('on-pf','on-fm'); document.body.classList.add('on-hp'); window.scrollTo(0,0);
+}));
+document.querySelectorAll('.goProfile').forEach(b=>b.addEventListener('click',()=>{
+  document.body.classList.remove('on-hp','on-pf','on-fm'); window.scrollTo(0,0);
+}));
+document.getElementById('fmBack').addEventListener('click',()=>{
+  document.body.classList.remove('on-fm'); document.body.classList.add('on-hp'); window.scrollTo(0,0);
 });
 
 </script>
