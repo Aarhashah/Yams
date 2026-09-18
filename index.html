@@ -91,7 +91,11 @@ h1 span{display:block;color:var(--blue);transition:color .8s}
   background:var(--blue);border-radius:999px;padding:12px 22px;transition:transform .25s,opacity .25s}
 .hi.is-pro .more{background:var(--ochre);color:var(--ink)}
 .more:hover{transform:translateY(-2px);opacity:.92}
-.more.alt{margin-left:10px}
+.more.alt{margin-left:8px}
+.more{white-space:nowrap}
+.more .sm{display:none}
+@media (max-width:700px){.more{font-size:12.5px;padding:10px 14px;margin-top:20px}
+  .more .lg{display:none}.more .sm{display:inline}}
 
 .flag{display:grid;grid-template-columns:repeat(4,1fr);margin-top:26px;
       background:var(--olive);color:var(--paper);border-radius:12px;overflow:hidden;transition:background .8s}
@@ -291,8 +295,8 @@ body.on-hp .hi,body.on-hp .pf,body.on-hp .fm{display:none}
 .wcard .ring{position:absolute;top:-28px;left:22px;width:58px;height:58px;border-radius:50%;background:var(--paper);
   border:2px solid var(--ink);display:grid;place-items:center;transition:background .35s,border-color .35s}
 .wcard .ring svg{width:27px;height:27px;stroke:var(--ink);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.wcard b{font-family:var(--display);font-weight:700;font-size:clamp(18px,1.6vw,23px);letter-spacing:-.03em;line-height:1.12;min-height:2.24em}
-.wcard i{font-style:normal;font-size:14.5px;line-height:1.5;opacity:.9}
+.wcard b{font-family:var(--display);font-weight:700;font-size:clamp(20px,1.95vw,28px);letter-spacing:-.03em;line-height:1.12;min-height:2.24em}
+.wcard i{font-style:normal;font-size:clamp(15px,1.1vw,17px);line-height:1.5;opacity:.9}
 .wcard[aria-selected="true"]{background:var(--ochre);color:var(--ink)}
 .wcard[aria-selected="true"] .ring{background:var(--ink);border-color:var(--ink)}
 .wcard[aria-selected="true"] .ring svg{stroke:var(--ochre)}
@@ -303,22 +307,29 @@ body.on-hp .hi,body.on-hp .pf,body.on-hp .fm{display:none}
 /* offerings: ochre head, dark green body */
 .offs{display:grid;grid-template-columns:repeat(auto-fit,minmax(0,1fr));gap:clamp(12px,1.5vw,20px);margin-top:18px}
 .off{border-radius:14px;overflow:hidden;display:flex;flex-direction:column;background:#26301F}
-.off .head{background:var(--ochre);color:var(--ink);padding:20px 22px 18px;min-height:178px}
-.off .no{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.02em;opacity:.7}
-.off b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(19px,1.6vw,23px);letter-spacing:-.03em;line-height:1.14;margin-top:6px}
-.off .one{display:block;font-family:var(--serif);font-style:italic;font-size:16.5px;line-height:1.3;margin-top:8px}
+.off .head{background:var(--ochre);color:var(--ink);padding:22px 24px 20px}
+.off .no{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:.02em;opacity:.65}
+.off b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(20px,1.85vw,27px);letter-spacing:-.03em;line-height:1.14;margin-top:8px}
+.off .one{display:block;font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.4vw,21px);line-height:1.32;margin-top:10px}
 .off .body{padding:6px 22px 26px;color:var(--cream);display:flex;flex-direction:column;flex:1}
 .off ul{margin-bottom:12px}
 .off ul{list-style:none;padding:0;margin:0}
-.off li{font-size:14.5px;line-height:1.5;padding:12px 0 12px 18px;position:relative;border-bottom:1px solid rgba(250,246,236,.16)}
+.off li{font-size:clamp(15px,1.15vw,17.5px);line-height:1.52;padding:13px 0 13px 19px;position:relative;border-bottom:1px solid rgba(250,246,236,.16)}
 .off li:last-child{border-bottom:0}
 .off li::before{content:"";position:absolute;left:0;top:19px;width:6px;height:6px;border-radius:50%;background:var(--ochre)}
-.off .go{margin-top:auto;padding-top:0;align-self:flex-start;font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;
+.off .go{margin-top:auto;padding-top:0;align-self:flex-start;font-family:var(--display);font-weight:700;font-size:16.5px;letter-spacing:-.02em;
   background:var(--ochre);color:var(--ink);border:0;border-radius:999px;padding:12px 22px;cursor:pointer}
 .off .go:hover{background:var(--cream)}
 
+.hpband{margin-top:clamp(44px,5vw,70px);border-top:1.5px solid rgba(20,21,9,.18);padding-top:clamp(22px,2.6vw,32px);
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.hpband p{font-family:var(--display);font-weight:700;font-size:clamp(19px,1.9vw,25px);letter-spacing:-.03em}
+.hpband button{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.02em;background:var(--ochre);
+  color:var(--ink);border:0;border-radius:999px;padding:13px 22px;cursor:pointer}
+.hpband button:hover{background:var(--ink);color:var(--ochre)}
+
 /* ===== ROOM 04 · THE FORM ===== */
-.fm{display:none;background:var(--olive-deep);color:var(--cream);min-height:100svh;padding:clamp(40px,5vw,70px) 0 clamp(56px,6vw,90px)}
+.fm{display:none;background:var(--olive-deep);color:var(--cream);min-height:100svh;overflow-x:hidden;padding:clamp(40px,5vw,70px) 0 clamp(56px,6vw,90px)}
 body.on-fm .fm{display:block}
 body.on-fm .hi,body.on-fm .pf,body.on-fm .hp{display:none}
 .fm .backbar button{color:var(--sage)}
@@ -331,11 +342,12 @@ body.on-fm .hi,body.on-fm .pf,body.on-fm .hp{display:none}
 .fm .aside{font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.9vw,25px);margin-top:14px;max-width:none}
 @media (min-width:901px){.fm .aside{white-space:nowrap}}
 
-form.yf{margin-top:clamp(30px,3.4vw,46px);display:grid;gap:18px;max-width:880px}
+form.yf{margin-top:clamp(30px,3.4vw,46px);display:grid;gap:18px;max-width:880px;width:100%}
 .yf .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.yf label.lb{display:block;font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;margin-bottom:8px}
+.yf .row>div{min-width:0}
+.yf label.lb{display:block;font-family:var(--display);font-weight:700;font-size:clamp(16px,1.3vw,19px);letter-spacing:-.02em;margin-bottom:9px}
 .yf .hint{display:block;font-family:var(--body);font-weight:400;font-size:13px;opacity:.6;margin-top:6px;letter-spacing:0}
-.yf input,.yf select,.yf textarea{width:100%;font-family:var(--body);font-size:16px;color:var(--ink);
+.yf input,.yf select,.yf textarea{width:100%;min-width:0;max-width:100%;font-family:var(--body);font-size:16px;color:var(--ink);
   background:var(--cream);border:1.5px solid transparent;border-radius:10px;padding:14px 15px}
 .yf select:invalid,.yf select.empty{color:#7B7A6E}
 .yf input:focus,.yf select:focus,.yf textarea:focus{outline:0;border-color:var(--ochre)}
@@ -422,15 +434,15 @@ form.yf{margin-top:clamp(30px,3.4vw,46px);display:grid;gap:18px;max-width:880px}
       <p>I ask way too many questions. To everyone around me, about everything around me.</p>
       <p>Then I go read, listen, dig, and fact check, until I understand something well enough to make it everyone's problem too.</p>
       <p>That's how YAMS was built.<br>There are plenty of modern problems (that everyone should be sus about), and they need modern solutions, not fancy ones. <span class="fig">we'll figure together.</span></p>
-      <button class="more">interested in my skills &amp; work? &rarr;</button>
-      <button class="more alt tohelp">how can I help you? &rarr;</button>
+      <button class="more"><span class="lg">interested in my skills &amp; work?</span><span class="sm">my skills &amp; work</span> &rarr;</button>
+      <button class="more alt tohelp"><span class="lg">how can I help you?</span><span class="sm">how I can help</span> &rarr;</button>
     </div>
     <div class="panel copy" id="p-pro" role="tabpanel">
       <p>I am an inquisitive person who thinks in frameworks. I like research, analysis, and the part where you keep digging until something finally makes sense, and hopefully makes an impact.</p>
       <p>I work across decarbonisation, circular economy, sustainable materials, reporting and regulation. Sounds fancy? It is.</p>
       <p>But what I enjoy the most is taking the fancy out of it. Making it modern-day relatable, so anyone can understand it, and actually do something about it.</p>
-      <button class="more">interested in my skills &amp; work? &rarr;</button>
-      <button class="more alt tohelp">how can I help you? &rarr;</button>
+      <button class="more"><span class="lg">interested in my skills &amp; work?</span><span class="sm">my skills &amp; work</span> &rarr;</button>
+      <button class="more alt tohelp"><span class="lg">how can I help you?</span><span class="sm">how I can help</span> &rarr;</button>
     </div>
   </div>
 
@@ -491,6 +503,11 @@ form.yf{margin-top:clamp(30px,3.4vw,46px);display:grid;gap:18px;max-width:880px}
 
   <div id="offs"></div>
   <div id="offsHome"></div>
+
+  <div class="hpband">
+    <p>Interested to take this further?</p>
+    <button class="goform">let's collaborate &rarr;</button>
+  </div>
  </div>
 </section>
 
@@ -509,14 +526,14 @@ form.yf{margin-top:clamp(30px,3.4vw,46px);display:grid;gap:18px;max-width:880px}
   <div class="modal" id="sentModal" role="dialog" aria-modal="true">
     <div class="modal__box">
       <b>Message received!</b>
-      <p>Super excited to receive this. I'll revert soon and <b style="display:inline;font-size:inherit;letter-spacing:0">we'll figure</b> how to make it work!</p>
+      <p>Super excited to receive this. I'll revert soon and <b style="display:inline;font-size:inherit;letter-spacing:0">we'll figure</b> how to make it work 😊</p>
       <button type="button" id="modalClose">lovely, thanks</button>
     </div>
   </div>
 
   <form class="yf" id="talkForm" novalidate>
     <div class="ok">
-      <b>Filed.</b> Super excited to receive this. I'll revert soon and we'll figure out how to make it work.
+      <b>Filed.</b> Super excited to receive this. I'll revert soon and we'll figure out how to make it work 😊
     </div>
     <input type="hidden" name="access_key" value="28f3eaaa-9149-40ec-b0b0-ec89b91e3ec4">
     <input type="hidden" name="subject" value="New enquiry from aaryousus.com">
@@ -871,7 +888,7 @@ const OFFERS={
       "What these roles actually look like",
       "An honest read on trends and fads",
       "A 30 or 90 day action plan to get going"]},
-  {n:"\u201chow do I talk or write about this online?\u201d",
+  {n:"\u201chow do I talk or write about things online?\u201d",
    one:"building your own voice, on sustainability or otherwise",
    l:["Finding your angle, and the formats that suit it: reels, carousels, blogs, long form",
       "Ideation and a content plan you can realistically keep up with",
@@ -927,8 +944,16 @@ function renderOffers(a){
     o.l.map(x=>'<li>'+x+'</li>').join('')+'</ul>'+
     '<button class="go" data-a="'+a+'" data-t="'+clean(o.n)+'">interested?</button></div></div>').join('')+'</div>';
   offsEl.querySelectorAll('.go').forEach(g=>g.addEventListener('click',()=>openForm(g.dataset.a,g.dataset.t)));
+  evenHeads();
 }
 
+function evenHeads(){
+  const hs=[...offsEl.querySelectorAll('.off .head')];
+  hs.forEach(x=>x.style.minHeight='');
+  if(window.innerWidth<=640||!hs.length) return;
+  const tallest=Math.max(...hs.map(x=>x.offsetHeight));
+  hs.forEach(x=>x.style.minHeight=tallest+'px');
+}
 const offsHome=document.getElementById('offsHome');
 function placeOffers(card){
   /* on a narrow screen the offerings sit directly under the card you tapped */
@@ -939,7 +964,11 @@ document.querySelectorAll('.wcard').forEach(b=>{
   b.addEventListener('click',()=>{
     const wasOn=b.getAttribute('aria-selected')==='true';
     document.querySelectorAll('.wcard').forEach(x=>x.setAttribute('aria-selected','false'));
-    if(wasOn){offsEl.innerHTML='';return;}          /* click again to collapse */
+    if(wasOn){                                     /* click again to collapse */
+      offsEl.innerHTML='';
+      offsHome.parentNode.insertBefore(offsEl,offsHome);
+      return;
+    }
     b.setAttribute('aria-selected','true');
     placeOffers(b);
     renderOffers(b.dataset.a);
@@ -947,7 +976,7 @@ document.querySelectorAll('.wcard').forEach(b=>{
 });
 window.addEventListener('resize',()=>{
   const on=document.querySelector('.wcard[aria-selected="true"]');
-  if(on) placeOffers(on);
+  if(on){placeOffers(on);evenHeads();}
 });
 
 /* ---------- the form ---------- */
@@ -1002,12 +1031,26 @@ document.getElementById('talkForm').addEventListener('submit',async ev=>{
     errBox.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
+  const last=Number(localStorage.getItem('yams_sent')||0);
+  if(Date.now()-last < 7*24*60*60*1000){
+    errBox.innerHTML="You've already sent one, and it's in my inbox. Give me a chance to come back to you before sending another.";
+    errBox.classList.add('on'); errBox.scrollIntoView({behavior:'smooth',block:'center'}); return;
+  }
   errBox.classList.remove('on');
   const data=Object.fromEntries(new FormData(f));
+  data.subject='YAMS enquiry: '+(data.name||'someone')+' ('+(data.who||'')+')';
+  data.message='WHO THEY ARE: '+data.who+' / '+data.about_you
+    +'\n\nWANTS TO TALK ABOUT: '+data.topic
+    +'\n\nIN THEIR WORDS:\n'+data.message
+    +'\n\nPREFERRED TIME: '+data.preferred_time
+    +'\nPHONE: '+(data.phone||'not given')
+    +'\nSUS BLOG: '+(data.subscribe?'yes please':'no thanks')
+    +'\n\nReply straight to this email and it goes to them.';
   try{
     await fetch('https://api.web3forms.com/submit',{method:'POST',
       headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(data)});
   }catch(e){}
+  localStorage.setItem('yams_sent',String(Date.now()));
   f.classList.add('sent');
   document.getElementById('sentModal').classList.add('on');
   window.scrollTo(0,0);
@@ -1022,6 +1065,10 @@ document.querySelectorAll('.tohelp').forEach(b=>b.addEventListener('click',()=>{
 }));
 document.querySelectorAll('.goProfile').forEach(b=>b.addEventListener('click',()=>{
   document.body.classList.remove('on-hp','on-pf','on-fm'); window.scrollTo(0,0);
+}));
+document.querySelectorAll('.goform').forEach(b=>b.addEventListener('click',()=>{
+  const on=document.querySelector('.wcard[aria-selected="true"]');
+  openForm(on?on.dataset.a:'one');
 }));
 document.getElementById('fmBack').addEventListener('click',()=>{
   document.body.classList.remove('on-fm'); document.body.classList.add('on-hp'); window.scrollTo(0,0);
