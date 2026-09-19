@@ -25,6 +25,7 @@ body.locked{overflow:hidden;height:100svh}
 .gate{transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .5s ease}
 body.leaving .gate{transform:translateY(-14%);opacity:0}
 body.entered .gate{display:none}
+body:not(.entered):not(.leaving) .hi{display:none}
 body::after{content:"";position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.04;
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
 
@@ -469,7 +470,7 @@ body.on-fm,body.pro-mode:not(.on-pf):not(.on-hp):not(.on-fm){
   width:100%;height:100%;cursor:pointer}
 .nav.is-on .nav__scrim{opacity:1}
 .nav__panel{position:absolute;right:clamp(10px,1.4vw,18px);left:auto;top:calc(var(--barh) + clamp(10px,1.4vw,18px));
-  bottom:clamp(10px,1.4vw,18px);width:min(430px,calc(100vw - 58px));
+  bottom:clamp(10px,1.4vw,18px);width:min(430px,calc(100vw - 48px));
   display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;
   background:var(--navbg);color:var(--navfg);border-radius:18px;
   padding:clamp(16px,2vw,22px) clamp(18px,2.2vw,26px) clamp(14px,1.6vw,18px);
@@ -515,7 +516,8 @@ button.mrow:focus-visible{outline:2px solid var(--navacc);outline-offset:-3px;bo
 .mrow.is-soon:hover .tag.soon i{display:inline}
 .tag b{font-weight:500}
 .nav__foot{padding-top:12px}
-.nav__foot .ftsoc{gap:7px 17px;font-size:15px}
+.nav__foot .ftsoc{flex-wrap:nowrap;gap:0 clamp(8px,2.8vw,17px);font-size:clamp(12px,3.4vw,15px)}
+.nav__foot .ftsoc svg{width:1.15em;height:1.15em}
 .nav__foot{border-top:1px solid var(--navrule);margin-top:auto}
 .nav__foot .ftsoc a{color:var(--navlink)}
 .nav__foot .ftsoc a:hover{color:var(--navfg)}
@@ -570,6 +572,7 @@ body.entered .ft{display:block}
 .ft__rule div{border-top:1px solid var(--ftrule);padding-top:15px;display:flex;flex-wrap:wrap;
   align-items:baseline;justify-content:space-between;gap:6px 20px}
 .ft__rule p{font-size:13.5px;line-height:1.5;opacity:.62}
+.ft__cw{white-space:nowrap}
 .ft__rule .ft__sig{font-family:var(--serif);font-style:italic;font-size:16.5px;color:var(--ftacc);opacity:1}
 
 @media (min-width:721px){
@@ -580,6 +583,8 @@ body.entered .ft{display:block}
 @media (max-width:720px){
   .ft__in{grid-template-columns:1fr;grid-template-areas:"id" "net" "gate";gap:26px}
   .ft__gatewrap{align-self:start}
+  .ft__rule div{flex-direction:column;align-items:stretch;gap:7px}
+  .ft__rule .ft__sig{text-align:right}
 }
 @media (max-width:900px){.ftsoc{gap:9px 16px;font-size:15px}}
 @media (max-width:420px){
@@ -833,7 +838,7 @@ body.entered .ft{display:block}
   </div>
   <div class="ft__rule">
     <div>
-      <p>&copy; 2026 Aarha Shah. Everything here is mine, including the typos.</p>
+      <p class="ft__cw">&copy; 2026 Aarha Shah. Everything here is mine, including the typos.</p>
       <p class="ft__sig">we'll figure.</p>
     </div>
   </div>
@@ -1362,7 +1367,24 @@ function toGate(){
   b.classList.remove('on-pf','on-hp','on-fm','entered','leaving');
   b.classList.add('locked');
   window.scrollTo(0,0);
+  document.documentElement.scrollTop=0; b.scrollTop=0;
 }
+
+/* The copyright line has to hold one line at every width, and its length is
+   fixed, so measure it and size it down until it fits. */
+const cw=document.querySelector('.ft__cw');
+let cwLast=-1;
+function fitCopy(){
+  if(!cw)return;
+  const box=cw.parentNode, w=box.clientWidth;
+  if(!w||w===cwLast)return;
+  cwLast=w; cw.style.fontSize='';
+  let f=parseFloat(getComputedStyle(cw).fontSize), guard=0;
+  while(cw.scrollWidth>w && f>9.5 && guard++<40){ f-=.25; cw.style.fontSize=f+'px'; }
+  cw.style.whiteSpace = cw.scrollWidth>w ? 'normal' : '';   /* never let it clip */
+}
+if(window.ResizeObserver)new ResizeObserver(fitCopy).observe(document.getElementById('ft'));
+window.addEventListener('resize',fitCopy);
 
 const PIN='<svg class="pin" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" '+
  'd="M12 23s7.4-6.9 7.4-12.3a7.4 7.4 0 1 0-14.8 0C4.6 16.1 12 23 12 23Zm0-9.3a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>';
