@@ -207,7 +207,7 @@ body.on-pf .hi{display:none}
 .b8{background:#E9A81D;color:var(--ink)}
 
 /* deep dive */
-.sheet{position:fixed;inset:0;z-index:200;transform:translateX(100%);transition:transform .55s cubic-bezier(.16,1,.3,1);
+.sheet{position:fixed;inset:0;z-index:540;transform:translateX(100%);transition:transform .55s cubic-bezier(.16,1,.3,1);
        overflow-y:auto;background:var(--olive-deep);color:var(--cream)}
 .sheet.is-open{transform:none}
 .sheet__in{max-width:1080px;margin:0 auto;padding:clamp(58px,7vw,96px) clamp(22px,4.5vw,64px) clamp(44px,5vw,72px)}
@@ -222,7 +222,7 @@ body.on-pf .hi{display:none}
 .kw b{display:block;font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.02em;color:#2C3823;margin-bottom:4px}
 .kw span{display:block;font-size:15px;line-height:1.5}
 .sheet .note{font-size:13.5px;opacity:.62;margin-top:24px}
-.sheet .close{position:fixed;top:16px;right:16px;z-index:210;width:46px;height:46px;border-radius:50%;
+.sheet .close{position:fixed;top:16px;right:16px;z-index:550;width:46px;height:46px;border-radius:50%;
   border:1.5px solid rgba(250,246,236,.5);background:rgba(30,38,24,.9);color:var(--cream);font-size:18px;cursor:pointer}
 .sheet .close:hover{background:var(--ochre);color:var(--ink);border-color:var(--ochre)}
 
@@ -395,12 +395,225 @@ form.yf>*{min-width:0;max-width:100%}
   .fm .aside{max-width:none}
 }
 
+/* The form photo is the only tall one, so the square circle was slicing the
+   top of her head off. Nudged down.                                       */
+.fmpic img{object-position:50% 20%}
+/* circle-real.jpg and circle-pro.jpg have a 7 to 8px white border baked into
+   their right and bottom edges. Held at the top left and drawn 1% larger, the
+   border falls outside the circle. The framing is otherwise unchanged.     */
+.hi .circle img{width:101%;height:101%;left:0;top:0;right:auto;bottom:auto}
+
+/* ===== PERSISTENT BAR ===== */
+body{--barh:64px;--barbg:rgba(250,246,236,.92);--barfg:var(--ink);--barln:rgba(20,21,9,.13);--barhi:var(--blue)}
+body.on-fm{--barbg:rgba(30,38,24,.92);--barfg:var(--cream);--barln:rgba(255,249,236,.18);--barhi:var(--ochre)}
+body.pro-mode:not(.on-pf):not(.on-hp):not(.on-fm){--barbg:rgba(30,38,24,.92);--barfg:var(--cream);--barln:rgba(255,249,236,.18);--barhi:var(--ochre)}
+body.nav-open{overflow:hidden}
+
+.bar{position:fixed;top:0;left:0;right:0;z-index:520;height:var(--barh);display:none;
+  align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(18px,4.5vw,64px);
+  color:var(--barfg);background:var(--barbg);border-bottom:1px solid var(--barln);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  transition:background .8s cubic-bezier(.16,1,.3,1),color .8s,border-color .8s}
+body.entered .bar{display:flex}
+.bar__mark{display:flex;align-items:baseline;gap:11px;min-width:0;background:none;border:0;padding:0;
+  cursor:pointer;color:inherit;font-family:var(--display)}
+.bar__yams{font-weight:800;font-stretch:80%;font-size:23px;letter-spacing:-.05em;line-height:1;transition:color .25s}
+.bar__mark:hover .bar__yams{color:var(--barhi)}
+.bar__mark:focus-visible{outline:2px solid var(--barhi);outline-offset:4px;border-radius:4px}
+.bar__ff{font-family:var(--serif);font-style:italic;font-size:15.5px;line-height:1;opacity:.66;white-space:nowrap}
+.bar__btn{display:inline-flex;align-items:center;gap:11px;flex:0 0 auto;cursor:pointer;color:inherit;
+  font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-.02em;white-space:nowrap;
+  background:transparent;border:1.5px solid currentColor;border-radius:999px;padding:9px 17px;
+  transition:background .25s,color .25s,border-color .25s}
+.bar__btn:hover{background:var(--barhi);border-color:var(--barhi);color:#fff}
+body.on-fm .bar__btn:hover,body.pro-mode:not(.on-pf):not(.on-hp):not(.on-fm) .bar__btn:hover{color:var(--ink)}
+.bar__btn:focus-visible{outline:2px solid var(--barhi);outline-offset:3px}
+.bar__btn .cl{display:none}
+body.nav-open .bar__btn .op{display:none}
+body.nav-open .bar__btn .cl{display:inline}
+.bar__ic{position:relative;width:17px;height:11px;flex:0 0 auto}
+.bar__ic i{position:absolute;left:0;right:0;height:1.8px;background:currentColor;border-radius:2px;
+  transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .2s}
+.bar__ic i:nth-child(1){top:0}
+.bar__ic i:nth-child(2){top:4.6px}
+.bar__ic i:nth-child(3){top:9.2px}
+body.nav-open .bar__ic i:nth-child(1){transform:translateY(4.6px) rotate(45deg)}
+body.nav-open .bar__ic i:nth-child(2){opacity:0}
+body.nav-open .bar__ic i:nth-child(3){transform:translateY(-4.6px) rotate(-45deg)}
+@media (max-width:820px){.bar__ff{display:none}}
+@media (max-width:620px){
+  body{--barh:58px}
+  .bar{padding:0 17px}
+  .bar__yams{font-size:20px}
+  .bar__btn{font-size:14px;padding:8px 14px;gap:9px}
+}
+
+/* clearance under the fixed bar */
+body.entered .hi{padding-top:var(--barh)}
+body.entered .pf,body.entered .hp,body.entered .fm{padding-top:calc(var(--barh) + clamp(26px,3vw,44px))}
+
+/* ===== THE SUS MAP, a drawer that floats over the room =====
+   Dark panel on the paper rooms, warm off-white panel on the dark ones.   */
+body{--navbg:var(--olive-deep);--navfg:var(--cream);--navacc:var(--ochre);--navprim:var(--ochre);
+     --navprimfg:var(--ink);--navrule:rgba(255,249,236,.15);--navtint:rgba(255,249,236,.05);
+     --navedge:rgba(255,249,236,.1);--navsoft:rgba(255,249,236,.4);--navlink:var(--ochre)}
+body.on-fm,body.pro-mode:not(.on-pf):not(.on-hp):not(.on-fm){
+     --navbg:var(--cream);--navfg:var(--ink);--navacc:var(--ochre-deep);--navprim:var(--blue);
+     --navprimfg:#fff;--navrule:rgba(20,21,9,.15);--navtint:rgba(20,21,9,.04);
+     --navedge:rgba(255,255,255,.7);--navsoft:rgba(20,21,9,.34);--navlink:var(--blue)}
+
+.nav{position:fixed;inset:0;z-index:480}
+.nav[hidden]{display:none}
+.nav__scrim{position:absolute;inset:0;background:rgba(20,21,9,.44);opacity:0;
+  -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);transition:opacity .45s ease;border:0;
+  width:100%;height:100%;cursor:pointer}
+.nav.is-on .nav__scrim{opacity:1}
+.nav__panel{position:absolute;right:clamp(10px,1.4vw,18px);left:auto;top:calc(var(--barh) + clamp(10px,1.4vw,18px));
+  bottom:clamp(10px,1.4vw,18px);width:min(430px,calc(100vw - 58px));
+  display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  background:var(--navbg);color:var(--navfg);border-radius:18px;
+  padding:clamp(16px,2vw,22px) clamp(18px,2.2vw,26px) clamp(14px,1.6vw,18px);
+  box-shadow:0 30px 70px -18px rgba(20,21,9,.62),0 2px 10px rgba(20,21,9,.28),
+             inset 0 1px 0 var(--navedge),inset 1px 0 0 var(--navedge);
+  transform-origin:right center;transform:perspective(1500px) translateX(108%) rotateY(16deg);
+  opacity:.4;transition:transform .55s cubic-bezier(.16,1,.3,1),opacity .35s ease}
+.nav.is-on .nav__panel{transform:perspective(1500px) translateX(0) rotateY(0);opacity:1}
+.nav__kicker{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--navacc);
+  margin-bottom:7px;flex:0 0 auto}
+.nav__list{flex:0 0 auto;border-top:1px solid var(--navrule)}
+.mrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+  grid-template-areas:"no title end" "no sub sub";align-items:center;gap:4px 13px;
+  width:100%;text-align:left;background:none;border:0;
+  border-bottom:1px solid var(--navrule);padding:9px 0;color:inherit;font-family:inherit;
+  transition:padding-left .3s cubic-bezier(.16,1,.3,1),background .3s}
+.mrow__no{grid-area:no;align-self:start;font-family:var(--display);font-weight:800;font-size:19px;
+  letter-spacing:.01em;opacity:.42;padding-top:3px;transition:color .22s,opacity .22s}
+.mrow__end{grid-area:end;justify-self:end}
+.mrow__t{grid-area:title;display:block;font-family:var(--display);font-weight:800;font-stretch:84%;font-size:clamp(22px,1.9vw,27px);
+  letter-spacing:-.04em;line-height:1.04;transition:color .22s}
+.mrow__s{grid-area:sub;display:block;font-family:var(--serif);font-style:italic;font-size:14.5px;
+  line-height:1.32;opacity:.66}
+.mrow__go{font-family:var(--display);font-weight:700;font-size:19px;
+  opacity:0;transform:translateX(-7px);transition:opacity .28s,transform .28s,color .22s}
+button.mrow{cursor:pointer}
+button.mrow:hover{padding-left:9px;background:var(--navtint)}
+button.mrow:hover .mrow__t,button.mrow:hover .mrow__go{color:var(--navacc)}
+button.mrow:hover .mrow__no{opacity:1;color:var(--navacc)}
+button.mrow:hover .mrow__go{opacity:1;transform:none}
+button.mrow:focus-visible{outline:2px solid var(--navacc);outline-offset:-3px;border-radius:6px}
+.mrow.here .mrow__no{opacity:1;color:var(--navacc)}
+.mrow.is-soon{opacity:.58;transition:opacity .3s}
+.mrow.is-soon:hover{opacity:.92}
+.tag{display:inline-flex;align-items:center;gap:5px;font-family:var(--body);font-weight:500;font-size:11.5px;
+  line-height:1;white-space:nowrap;border-radius:999px;padding:5px 10px;transition:border-color .22s,color .22s}
+.tag.now{background:var(--navprim);color:var(--navprimfg);padding:5px 11px 5px 8px}
+.tag .pin{width:13px;height:13px;fill:currentColor;display:block;flex:0 0 auto;animation:bob 2.6s ease-in-out infinite}
+.tag.soon{border:1px solid var(--navsoft)}
+.tag.soon i{display:none;font-style:normal}
+.mrow.is-soon:hover .tag.soon{border-color:var(--navacc);color:var(--navacc)}
+.mrow.is-soon:hover .tag.soon b{display:none}
+.mrow.is-soon:hover .tag.soon i{display:inline}
+.tag b{font-weight:500}
+.nav__foot{padding-top:12px}
+.nav__foot .ftsoc{gap:7px 17px;font-size:15px}
+.nav__foot{border-top:1px solid var(--navrule);margin-top:auto}
+.nav__foot .ftsoc a{color:var(--navlink)}
+.nav__foot .ftsoc a:hover{color:var(--navfg)}
+
+/* ===== FOOTER =====
+   It flips to the opposite of whatever room it is closing, so there is always
+   a hard edge between the room and the footer.                              */
+body{--ftbg:var(--olive-deep);--ftfg:var(--cream);--ftacc:var(--ochre);--ftlink:var(--ochre);
+     --ftrule:rgba(255,249,236,.2);--ftprim:var(--ochre);--ftprimfg:var(--ink);--ftline:rgba(255,249,236,.45)}
+body.on-fm,body.pro-mode:not(.on-pf):not(.on-hp):not(.on-fm){
+     --ftbg:var(--paper);--ftfg:var(--ink);--ftacc:var(--ochre-deep);--ftlink:var(--blue);
+     --ftrule:rgba(20,21,9,.16);--ftprim:var(--blue);--ftprimfg:#fff;--ftline:rgba(20,21,9,.4)}
+
+.ft{display:none;background:var(--ftbg);color:var(--ftfg);
+    transition:background .8s cubic-bezier(.16,1,.3,1),color .8s}
+body.entered .ft{display:block}
+.ft__in{max-width:1280px;margin:0 auto;padding:clamp(32px,3.4vw,46px) clamp(22px,4.5vw,64px) clamp(20px,2.2vw,28px);
+  display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+  grid-template-areas:"id net" "gate net";
+  gap:clamp(16px,1.8vw,24px) clamp(28px,3.4vw,56px);align-items:start}
+.ft__id{grid-area:id}
+.ft__net{grid-area:net}
+.ft__gatewrap{grid-area:gate;align-self:start}
+
+.ft__sus,.ft__ask{line-height:1.06;letter-spacing:-.03em}
+.ft__sus{font-family:var(--serif);font-style:italic;color:var(--ftacc);font-size:clamp(28px,3.05vw,39px)}
+.ft__ask{font-family:var(--display);font-weight:800;font-stretch:88%;letter-spacing:-.045em;
+  font-size:clamp(25px,2.65vw,34px);margin-top:2px}
+.ft__ff{font-family:var(--display);font-weight:700;font-size:clamp(17px,1.5vw,21px);letter-spacing:-.025em;
+  line-height:1.25;margin-top:clamp(20px,2.2vw,28px)}
+.ft__fig{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.4vw,19px);line-height:1.4;
+  opacity:.78;margin-top:10px;max-width:34ch}
+
+.ft__lbl{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.ftsoc{display:flex;flex-wrap:wrap;gap:9px 20px;margin-top:11px;
+  font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.02em}
+.ftsoc a{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;white-space:nowrap;line-height:1;
+  color:var(--ftlink);text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px;
+  transition:border-color .2s,color .2s}
+.ftsoc a:hover{border-color:currentColor}
+.ftsoc svg{width:18px;height:18px;fill:currentColor;display:block;flex:0 0 auto}
+.ft__cta{display:inline-block;margin-top:clamp(16px,1.8vw,22px);font-family:var(--display);font-weight:700;
+  font-size:16.5px;letter-spacing:-.02em;white-space:nowrap;background:var(--ftprim);color:var(--ftprimfg);
+  border:0;border-radius:999px;padding:12.5px 24px;cursor:pointer;transition:transform .25s,opacity .25s}
+.ft__cta:hover{transform:translateY(-2px);opacity:.92}
+.gatebtn{font-family:var(--display);font-weight:700;font-size:13.5px;letter-spacing:-.015em;white-space:nowrap;
+  background:transparent;color:var(--ftfg);border:1.2px solid var(--ftline);border-radius:999px;
+  padding:8px 15px;cursor:pointer;opacity:.9;transition:background .25s,color .25s,border-color .25s,opacity .25s}
+.gatebtn:hover{background:var(--ftfg);color:var(--ftbg);border-color:var(--ftfg);opacity:1}
+
+.ft__rule{max-width:1280px;margin:0 auto;padding:0 clamp(22px,4.5vw,64px) clamp(24px,2.6vw,34px)}
+.ft__rule div{border-top:1px solid var(--ftrule);padding-top:15px;display:flex;flex-wrap:wrap;
+  align-items:baseline;justify-content:space-between;gap:6px 20px}
+.ft__rule p{font-size:13.5px;line-height:1.5;opacity:.62}
+.ft__rule .ft__sig{font-family:var(--serif);font-style:italic;font-size:16.5px;color:var(--ftacc);opacity:1}
+
+@media (min-width:721px){
+  .ft__in{grid-template-columns:minmax(0,1fr) auto}
+  .ft__net{justify-self:end}
+  .ft__net .ftsoc{flex-wrap:nowrap}
+}
+@media (max-width:720px){
+  .ft__in{grid-template-columns:1fr;grid-template-areas:"id" "net" "gate";gap:26px}
+  .ft__gatewrap{align-self:start}
+}
+@media (max-width:900px){.ftsoc{gap:9px 16px;font-size:15px}}
+@media (max-width:420px){
+  .ftsoc{gap:8px 14px;font-size:14.5px}
+  .ftsoc svg{width:17px;height:17px}
+}
+
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
 @keyframes settle{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){*,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body class="locked">
+
+<header class="bar" id="bar">
+  <button class="bar__mark" id="barMark" aria-label="YAMS, back to the start">
+    <span class="bar__yams">YAMS</span>
+    <span class="bar__ff">Your Ally for Modern Sustainability</span>
+  </button>
+  <button class="bar__btn" id="navBtn" aria-expanded="false" aria-controls="nav">
+    <span class="op">sus map</span><span class="cl">close</span>
+    <span class="bar__ic" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+</header>
+
+<div class="nav" id="nav" hidden>
+  <button class="nav__scrim" id="navScrim" aria-label="Close the sus map" tabindex="-1"></button>
+  <aside class="nav__panel" role="dialog" aria-modal="true" aria-label="The sus map">
+    <p class="nav__kicker">where to?</p>
+    <nav class="nav__list" id="navList"></nav>
+    <div class="nav__foot"><div id="navSoc"></div></div>
+  </aside>
+</div>
 
 <section class="gate">
   <div class="gate__mark">
@@ -465,7 +678,6 @@ form.yf>*{min-width:0;max-width:100%}
 <!-- ========== PORTFOLIO ========== -->
 <section class="pf" id="work">
  <div class="wrap">
-  <div class="backbar"><button class="goProfile">&larr; back to profile</button></div>
   <h2>AARHA'S<br><span>PORTFOLIO</span></h2>
   <p class="aside">explore my skills, expertise and experience</p>
 
@@ -496,7 +708,6 @@ form.yf>*{min-width:0;max-width:100%}
 <!-- ========== HOW I CAN HELP ========== -->
 <section class="hp" id="help">
  <div class="wrap">
-  <div class="backbar"><button class="goProfile">&larr; back to profile</button></div>
   <h2>HOW I CAN<br><span>HELP YOU</span></h2>
   <p class="aside">modern problems? modern solutions. we'll figure.</p>
 
@@ -603,6 +814,31 @@ form.yf>*{min-width:0;max-width:100%}
  </div>
 </section>
 
+<footer class="ft" id="ft">
+  <div class="ft__in">
+    <div class="ft__id">
+      <p class="ft__sus">aaru sus.</p>
+      <p class="ft__ask">are you sus?</p>
+      <p class="ft__ff">YAMS, Your Ally for Modern Sustainability</p>
+      <p class="ft__fig">Modern problems need modern solutions, not fancy ones!</p>
+    </div>
+    <div class="ft__net">
+      <p class="ft__lbl">find me here</p>
+      <div id="ftSoc"></div>
+      <button class="ft__cta goSayHi">say hi &rarr;</button>
+    </div>
+    <div class="ft__gatewrap">
+      <button class="gatebtn goGate">&uarr; re-enter through the gate</button>
+    </div>
+  </div>
+  <div class="ft__rule">
+    <div>
+      <p>&copy; 2026 Aarha Shah. Everything here is mine, including the typos.</p>
+      <p class="ft__sig">we'll figure.</p>
+    </div>
+  </div>
+</footer>
+
 <script>
 const COPY={
  real:{
@@ -645,6 +881,7 @@ document.querySelectorAll('.toggle button').forEach(btn=>{
     document.getElementById('ph-real').classList.toggle('is-on',p==='real');
     document.getElementById('ph-pro').classList.toggle('is-on',p==='pro');
     hi.classList.toggle('is-pro',p==='pro');
+    document.body.classList.toggle('pro-mode',p==='pro');
     render(p);
   });
 });
@@ -1065,9 +1302,6 @@ document.getElementById('modalClose').addEventListener('click',()=>{
 document.querySelectorAll('.tohelp').forEach(b=>b.addEventListener('click',()=>{
   document.body.classList.remove('on-pf','on-fm'); document.body.classList.add('on-hp'); window.scrollTo(0,0);
 }));
-document.querySelectorAll('.goProfile').forEach(b=>b.addEventListener('click',()=>{
-  document.body.classList.remove('on-hp','on-pf','on-fm'); window.scrollTo(0,0);
-}));
 document.querySelectorAll('.goform').forEach(b=>b.addEventListener('click',()=>{
   const on=document.querySelector('.wcard[aria-selected="true"]');
   openForm(on?on.dataset.a:'one');
@@ -1075,6 +1309,106 @@ document.querySelectorAll('.goform').forEach(b=>b.addEventListener('click',()=>{
 document.getElementById('fmBack').addEventListener('click',()=>{
   document.body.classList.remove('on-fm'); document.body.classList.add('on-hp'); window.scrollTo(0,0);
 });
+
+/* ===================== BAR, SUS MAP & FOOTER ===================== */
+/* One list drives the drawer. To switch a room on: set live:1 and give it a
+   branch in goRoom(). Array order is the order shown.                     */
+const ROOMS=[
+ {k:"hi", n:"Hi, I'm Aarha",      s:"the person behind YAMS",                              live:1},
+ {k:"pf", n:"Aarha's Portfolio",  s:"skills, expertise and experience",                    live:1},
+ {k:"hp", n:"How I Can Help You", s:"modern problems? modern solutions.",                  live:1},
+ {k:"fm", n:"Let's Collaborate",  s:"say hi",                                              live:1},
+ {k:"quiz",n:"R U Sus?",          s:"quizzes, check how sus you really are"},
+ {k:"blog",n:"Sus Blog",          s:"myth-busting, greenwashing, and the questions nobody's asking"},
+ {k:"you", n:"You Can Help Me",   s:"find a gap, pick my next topic or just share your views"},
+ {k:"irl", n:"Sus IRL",           s:"everything I post, gathered in one place"}
+];
+
+const nav=document.getElementById('nav'), navBtn=document.getElementById('navBtn'),
+      navList=document.getElementById('navList');
+
+const FTSOC='<div class="ftsoc">'+
+ '<a href="https://www.instagram.com/aaryousus" target="_blank" rel="noopener">'+SVG_IG+'Instagram</a>'+
+ '<a href="https://www.linkedin.com/in/aarha" target="_blank" rel="noopener">'+SVG_LI+'LinkedIn</a>'+
+ '<a href="https://youtube.com/@aaryousus" target="_blank" rel="noopener">'+SVG_YT+'YouTube</a></div>';
+document.getElementById('ftSoc').innerHTML=FTSOC;
+document.getElementById('navSoc').innerHTML=FTSOC;
+
+function currentRoom(){
+  const c=document.body.classList;
+  if(!c.contains('entered'))return '';
+  return c.contains('on-pf')?'pf':c.contains('on-hp')?'hp':c.contains('on-fm')?'fm':'hi';
+}
+
+function goRoom(k){
+  closeSheet();
+  if(k==='fm'){
+    const on=document.querySelector('.wcard[aria-selected="true"]');
+    openForm(on?on.dataset.a:'one');            /* keeps the dropdowns in step */
+  }else{
+    const b=document.body;
+    b.classList.remove('on-pf','on-hp','on-fm');
+    if(k==='pf')b.classList.add('on-pf');
+    if(k==='hp')b.classList.add('on-hp');
+    window.scrollTo(0,0);
+  }
+  closeNav();
+}
+
+/* the wordmark returns you to the gate, and locks it behind you again */
+function toGate(){
+  closeNav(); closeSheet();
+  const b=document.body;
+  b.classList.remove('on-pf','on-hp','on-fm','entered','leaving');
+  b.classList.add('locked');
+  window.scrollTo(0,0);
+}
+
+const PIN='<svg class="pin" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" '+
+ 'd="M12 23s7.4-6.9 7.4-12.3a7.4 7.4 0 1 0-14.8 0C4.6 16.1 12 23 12 23Zm0-9.3a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>';
+
+function buildNav(){
+  const here=currentRoom();
+  navList.innerHTML=ROOMS.map((r,n)=>{
+    const head='<span class="mrow__no">0'+(n+1)+'</span><span class="mrow__t">'+r.n+'</span>',
+          sub='<span class="mrow__s">'+r.s+'</span>';
+    if(!r.live)return '<span class="mrow is-soon">'+head+
+      '<span class="mrow__end"><span class="tag soon"><b>cooking</b><i>soon</i></span></span>'+sub+'</span>';
+    const end=r.k===here?'<span class="tag now">'+PIN+'you are here</span>'
+                        :'<span class="mrow__go">&rarr;</span>';
+    return '<button class="mrow'+(r.k===here?' here':'')+'" data-k="'+r.k+'"'+
+      (r.k===here?' aria-current="page"':'')+'>'+head+
+      '<span class="mrow__end">'+end+'</span>'+sub+'</button>';
+  }).join('');
+  navList.querySelectorAll('button.mrow').forEach(b=>
+    b.addEventListener('click',()=>goRoom(b.dataset.k)));
+}
+
+function openNav(){
+  buildNav();
+  nav.hidden=false;
+  document.body.classList.add('nav-open');
+  document.documentElement.style.overflow='hidden';
+  navBtn.setAttribute('aria-expanded','true');
+  requestAnimationFrame(()=>nav.classList.add('is-on'));
+}
+function closeNav(){
+  if(!document.body.classList.contains('nav-open'))return;
+  nav.classList.remove('is-on');
+  document.body.classList.remove('nav-open');
+  document.documentElement.style.overflow='';
+  navBtn.setAttribute('aria-expanded','false');
+  setTimeout(()=>{if(!document.body.classList.contains('nav-open'))nav.hidden=true;},560);
+}
+navBtn.addEventListener('click',()=>{
+  document.body.classList.contains('nav-open')?closeNav():openNav();
+});
+document.getElementById('navScrim').addEventListener('click',closeNav);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
+
+document.getElementById('barMark').addEventListener('click',toGate);
+document.querySelectorAll('.goGate').forEach(b=>b.addEventListener('click',toGate));
+document.querySelectorAll('.goSayHi').forEach(b=>b.addEventListener('click',()=>goRoom('fm')));
 
 </script>
 </body>
