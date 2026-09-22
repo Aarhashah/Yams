@@ -26,6 +26,7 @@ body.locked{overflow:hidden;height:100svh}
 body.leaving .gate{transform:translateY(-14%);opacity:0}
 body.entered .gate{display:none}
 body:not(.entered):not(.leaving) .hi{display:none}
+body.entered .yh{padding-top:calc(var(--barh) + clamp(26px,3vw,44px))}
 body::after{content:"";position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.04;
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
 
@@ -407,7 +408,7 @@ form.yf>*{min-width:0;max-width:100%}
 /* ===== PERSISTENT BAR ===== */
 body{--barh:64px;--barbg:rgba(250,246,236,.92);--barfg:var(--ink);--barln:rgba(20,21,9,.13);--barhi:var(--blue)}
 body.on-fm{--barbg:rgba(30,38,24,.92);--barfg:var(--cream);--barln:rgba(255,249,236,.18);--barhi:var(--ochre)}
-body.pro-mode:not(.on-pf):not(.on-hp):not(.on-fm){--barbg:rgba(30,38,24,.92);--barfg:var(--cream);--barln:rgba(255,249,236,.18);--barhi:var(--ochre)}
+body.darkroom{--barbg:rgba(30,38,24,.92);--barfg:var(--cream);--barln:rgba(255,249,236,.18);--barhi:var(--ochre)}
 body.nav-open{overflow:hidden}
 
 .bar{position:fixed;top:0;left:0;right:0;z-index:520;height:var(--barh);display:none;
@@ -427,7 +428,7 @@ body.entered .bar{display:flex}
   background:transparent;border:1.5px solid currentColor;border-radius:999px;padding:9px 17px;
   transition:background .25s,color .25s,border-color .25s}
 .bar__btn:hover{background:var(--barhi);border-color:var(--barhi);color:#fff}
-body.on-fm .bar__btn:hover,body.pro-mode:not(.on-pf):not(.on-hp):not(.on-fm) .bar__btn:hover{color:var(--ink)}
+body.darkroom .bar__btn:hover{color:var(--ink)}
 .bar__btn:focus-visible{outline:2px solid var(--barhi);outline-offset:3px}
 .bar__btn .cl{display:none}
 body.nav-open .bar__btn .op{display:none}
@@ -458,7 +459,7 @@ body.entered .pf,body.entered .hp,body.entered .fm{padding-top:calc(var(--barh) 
 body{--navbg:var(--olive-deep);--navfg:var(--cream);--navacc:var(--ochre);--navprim:var(--ochre);
      --navprimfg:var(--ink);--navrule:rgba(255,249,236,.15);--navtint:rgba(255,249,236,.05);
      --navedge:rgba(255,249,236,.1);--navsoft:rgba(255,249,236,.4);--navlink:var(--ochre)}
-body.on-fm,body.pro-mode:not(.on-pf):not(.on-hp):not(.on-fm){
+body.darkroom{
      --navbg:var(--cream);--navfg:var(--ink);--navacc:var(--ochre-deep);--navprim:var(--blue);
      --navprimfg:#fff;--navrule:rgba(20,21,9,.15);--navtint:rgba(20,21,9,.04);
      --navedge:rgba(255,255,255,.7);--navsoft:rgba(20,21,9,.34);--navlink:var(--blue)}
@@ -527,7 +528,7 @@ button.mrow:focus-visible{outline:2px solid var(--navacc);outline-offset:-3px;bo
    a hard edge between the room and the footer.                              */
 body{--ftbg:var(--olive-deep);--ftfg:var(--cream);--ftacc:var(--ochre);--ftlink:var(--ochre);
      --ftrule:rgba(255,249,236,.2);--ftprim:var(--ochre);--ftprimfg:var(--ink);--ftline:rgba(255,249,236,.45)}
-body.on-fm,body.pro-mode:not(.on-pf):not(.on-hp):not(.on-fm){
+body.darkroom{
      --ftbg:var(--paper);--ftfg:var(--ink);--ftacc:var(--ochre-deep);--ftlink:var(--blue);
      --ftrule:rgba(20,21,9,.16);--ftprim:var(--blue);--ftprimfg:#fff;--ftline:rgba(20,21,9,.4)}
 
@@ -592,6 +593,168 @@ body.entered .ft{display:block}
   .ftsoc svg{width:17px;height:17px}
 }
 
+/* ===== ROOM 05 · R U SUS? ===== */
+.yh{display:none;background:var(--paper);color:var(--ink);min-height:100svh;
+  padding:clamp(40px,5vw,70px) 0 clamp(56px,6vw,90px)}
+body.on-yh .yh{display:block}
+body.on-yh .hi,body.on-yh .pf,body.on-yh .hp,body.on-yh .fm{display:none}
+body.on-pf .yh,body.on-hp .yh,body.on-fm .yh{display:none}
+.yh h2{font-family:var(--display);font-weight:800;font-stretch:84%;
+  font-size:clamp(46px,8vw,104px);letter-spacing:-.05em;line-height:.9}
+.yh h2 span{color:var(--blue)}
+.yh .sub{max-width:30ch}
+.yh__lead{font-size:clamp(15.5px,1.2vw,17px);line-height:1.62;max-width:60ch;
+  margin-top:clamp(18px,2vw,26px);opacity:.82}
+.yh__lead em{font-family:var(--serif);font-style:italic;font-size:1.12em;color:var(--blue);opacity:1}
+.qcards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.8vw,24px);
+  margin-top:clamp(52px,5vw,74px)}
+@media (max-width:720px){.qcards{grid-template-columns:1fr;gap:clamp(44px,8vw,54px)}}
+.qcard{position:relative;text-align:left;border:0;cursor:pointer;border-radius:14px;
+  padding:50px 22px 24px;font-family:inherit;color:var(--cream);display:flex;flex-direction:column;
+  transition:transform .3s cubic-bezier(.16,1,.3,1),background .3s}
+.qcard.c1{background:#26301F}
+.qcard.c2{background:#55683F}
+.qcard:hover{transform:translateY(-4px)}
+.qcard:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.qcard .ring{position:absolute;top:-28px;left:22px;width:58px;height:58px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center}
+.qcard .ring svg{width:28px;height:28px;stroke:var(--ink);stroke-width:1.5;fill:none;
+  stroke-linecap:round;stroke-linejoin:round}
+.qcard b{font-family:var(--display);font-weight:800;font-stretch:86%;
+  font-size:clamp(28px,3.2vw,42px);letter-spacing:-.045em;line-height:1}
+.qcard i{font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.55vw,21px);
+  line-height:1.25;opacity:.88;margin-top:8px}
+.qcard u{text-decoration:none;font-size:clamp(15px,1.15vw,16.5px);line-height:1.55;opacity:.9;
+  margin-top:clamp(14px,1.6vw,18px)}
+.qcard s{text-decoration:none;margin-top:clamp(16px,1.8vw,22px);font-family:var(--display);
+  font-weight:700;font-size:16px;letter-spacing:-.02em;align-self:flex-start;
+  border-bottom:2px solid currentColor;padding-bottom:2px}
+.qcard:hover s em{display:inline-block;transform:translateX(5px);transition:transform .3s;font-style:normal}
+
+/* ===== THE QUIZ ===== */
+.qz{position:fixed;inset:0;z-index:560;display:flex;flex-direction:column;
+  background:var(--qbg,var(--paper));color:var(--qfg,var(--ink));
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  transition:background .7s cubic-bezier(.16,1,.3,1),color .7s}
+.qz[hidden]{display:none}
+.qz__bar{position:sticky;top:0;z-index:3;flex:0 0 auto;display:flex;align-items:center;
+  gap:clamp(11px,1.8vw,20px);padding:14px clamp(16px,4vw,48px);background:var(--qbg,var(--paper));
+  transition:background .7s cubic-bezier(.16,1,.3,1)}
+.qzbtn{width:38px;height:38px;flex:0 0 auto;display:grid;place-items:center;cursor:pointer;
+  background:transparent;color:inherit;border:1.5px solid var(--qln);border-radius:50%;padding:0;
+  transition:background .25s,border-color .25s,opacity .25s}
+.qzbtn svg{width:17px;height:17px;display:block;fill:none;stroke:currentColor;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round}
+.qzbtn:hover{background:var(--qtint);border-color:currentColor}
+.qzbtn[disabled]{opacity:.22;cursor:default}
+.trail{flex:1 1 auto;display:flex;align-items:center;min-width:0;height:24px}
+.trail i{display:block;margin:0;padding:0}
+.trail .seg{flex:1 1 0;min-width:6px;height:2px;background:var(--qln);transition:background .4s}
+.trail .seg.on{background:var(--ochre)}
+.trail .dot{flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--qln);
+  transition:background .4s,transform .4s}
+.trail .dot.on{background:var(--ochre)}
+.trail .dot.now{transform:scale(1.85);box-shadow:0 0 0 4px var(--qtint)}
+.trail .peak{flex:0 0 auto;width:16px;height:16px;color:var(--qln);transition:color .4s}
+.trail .peak.on{color:var(--ochre)}
+.trail .peak svg{width:16px;height:16px;display:block;fill:currentColor;stroke:none}
+.qz__in{position:relative;z-index:1;flex:1 1 auto;width:100%;max-width:880px;margin:0 auto;
+  padding:clamp(10px,1.6vw,20px) clamp(20px,4vw,48px) clamp(40px,5vw,64px)}
+.qz__kick{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:800;
+  font-size:12.5px;letter-spacing:.09em;opacity:.55;margin-bottom:11px}
+.qz__q{font-family:var(--display);font-weight:800;font-stretch:86%;
+  font-size:clamp(26px,3.6vw,46px);letter-spacing:-.04em;line-height:1.04}
+.qz__hint{font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.5vw,20px);
+  opacity:.68;margin-top:9px}
+.opts{margin-top:clamp(20px,2.4vw,28px);display:grid;gap:10px;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.opts.wide{grid-template-columns:1fr}
+.opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;cursor:pointer;
+  background:var(--qcard);color:inherit;border:1.5px solid var(--qln);border-radius:13px;
+  padding:14px 17px;font-family:var(--body);font-weight:500;
+  font-size:clamp(15.5px,1.2vw,17px);line-height:1.35;
+  transition:background .2s,border-color .2s,color .2s}
+.opt:hover{border-color:currentColor}
+.opt:focus-visible{outline:2px solid var(--ochre);outline-offset:2px}
+.opt__k{flex:0 0 auto;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;
+  border:1.5px solid var(--qln);font-family:var(--display);font-weight:700;font-size:12.5px;
+  transition:background .2s,border-color .2s,color .2s}
+.opt__k.ico svg{width:17px;height:17px;display:block;fill:none;stroke:currentColor;
+  stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.opt__k.em{font-size:15px;line-height:1;border-color:transparent;background:var(--qtint)}
+.opt.on .opt__k.em{background:var(--qselfg)}
+.opt.on{background:var(--qsel);border-color:var(--qsel);color:var(--qselfg)}
+.opt.on .opt__k{background:var(--qselfg);border-color:var(--qselfg);color:var(--qsel)}
+.qask{margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.qask label{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.02em}
+.qask input{flex:0 1 240px;font-family:var(--body);font-size:16px;color:var(--ink);
+  background:var(--cream);border:1.5px solid transparent;border-radius:11px;padding:11px 14px}
+.qask input:focus{outline:0;border-color:var(--ochre)}
+.qz__foot{margin-top:clamp(20px,2.4vw,28px);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.qznext{display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-weight:700;
+  font-size:17px;letter-spacing:-.02em;background:var(--ochre);color:var(--ink);border:0;
+  border-radius:999px;padding:13px 26px;cursor:pointer;transition:transform .25s,opacity .25s}
+.qznext:hover{transform:translateY(-2px)}
+.qz__note{font-family:var(--serif);font-style:italic;font-size:16px;opacity:.62}
+.qz__flash{margin-top:14px;background:var(--ochre);color:var(--ink);border-radius:11px;
+  padding:11px 15px;font-size:15px;line-height:1.45;font-weight:500}
+.qz__flash.alert{background:#D5482E;color:#fff;font-size:16px;padding:14px 18px;
+  box-shadow:0 10px 24px -8px rgba(160,44,20,.75),inset 0 1px 0 rgba(255,255,255,.28);
+  animation:nudge .45s cubic-bezier(.36,.07,.19,.97)}
+.qz__flash[hidden]{display:none}
+
+/* the last screen */
+.recap{margin:clamp(20px,2.4vw,30px) 0 clamp(28px,3.4vw,42px);border-top:1px solid var(--qln)}
+.recap>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) auto;
+  gap:6px 20px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--qln)}
+.recap b{font-weight:500;font-size:15px;line-height:1.45;opacity:.9}
+.recap b u{display:inline-block;text-decoration:none;font-family:var(--display);font-weight:800;
+  font-size:12.5px;width:21px;height:21px;line-height:21px;text-align:center;border-radius:50%;
+  background:var(--qtint);color:var(--ochre);margin-right:9px;vertical-align:1px}
+.recap span{font-weight:500;font-size:15.5px;line-height:1.45;opacity:.78}
+.recap span.miss{color:#F0885F;opacity:1}
+.revisit{flex:0 0 auto;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:-.01em;
+  background:var(--ochre);color:var(--ink);border:0;border-radius:999px;
+  padding:8px 15px;cursor:pointer;white-space:nowrap;transition:transform .2s,opacity .2s}
+.revisit:hover{transform:translateY(-1px);opacity:.88}
+.qz__hint.sunny{color:var(--ochre);opacity:1}
+@media (max-width:680px){
+  .recap>div{grid-template-columns:1fr auto;gap:4px 14px}
+  .recap b{grid-column:1/-1}
+}
+.qz__last{font-family:var(--display);font-weight:800;font-size:clamp(15px,1.4vw,18px);
+  letter-spacing:.06em;color:var(--ochre);margin-bottom:20px;
+  border-top:1.5px solid var(--qln);padding-top:clamp(22px,2.6vw,30px)}
+.qzf{display:grid;gap:clamp(18px,2vw,24px)}
+.qzf label{display:block;font-family:var(--display);font-weight:700;font-size:17px;
+  letter-spacing:-.02em;margin-bottom:9px}
+.qzf label em{font-style:normal;font-weight:500;font-size:15px;opacity:.6}
+.qzf input[type=text],.qzf input[type=email],.qzf textarea{width:100%;font-family:var(--body);
+  font-size:16px;color:var(--ink);background:var(--cream);border:1.5px solid transparent;
+  border-radius:12px;padding:14px 16px}
+.qzf textarea{min-height:112px;resize:vertical;line-height:1.55}
+.qzf input:focus,.qzf textarea:focus{outline:0;border-color:var(--ochre)}
+.qzf .two{display:grid;gap:clamp(18px,2vw,24px);grid-template-columns:1fr 1fr}
+@media (max-width:620px){.qzf .two{grid-template-columns:1fr}}
+.qzf label.qzsub{display:flex;align-items:flex-start;gap:12px;cursor:pointer;margin-bottom:0;
+  font-family:var(--body);font-weight:500;font-size:15.5px;letter-spacing:0;line-height:1.45}
+.qzf label.qzsub input{width:20px;height:20px;flex:0 0 auto;margin-top:1px;accent-color:var(--ochre)}
+.qz__sent{text-align:center;padding:clamp(26px,5vw,60px) 0}
+.qz__sent .big{font-family:var(--display);font-weight:800;font-stretch:86%;
+  font-size:clamp(34px,5.5vw,70px);letter-spacing:-.05em;line-height:.98}
+.qz__sent .fig{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.1vw,27px);
+  color:var(--ochre);margin-top:12px}
+.qz__sent p{font-size:16px;line-height:1.6;opacity:.82;margin:clamp(16px,2vw,22px) auto 0;max-width:44ch}
+.qz__sent .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:clamp(24px,3vw,34px)}
+.qzghost{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.02em;
+  background:transparent;color:inherit;border:1.5px solid var(--qln);border-radius:999px;
+  padding:13px 24px;cursor:pointer;transition:background .25s,border-color .25s}
+.qzghost:hover{background:var(--qtint);border-color:currentColor}
+.qz__err{margin-top:14px;background:#C1442E;color:#fff;border-radius:11px;
+  padding:12px 15px;font-size:15px;line-height:1.45}
+.qz__hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+@keyframes nudge{0%,100%{transform:translateX(0)}22%{transform:translateX(-7px)}62%{transform:translateX(5px)}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
 @keyframes settle{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -637,6 +800,7 @@ body.entered .ft{display:block}
  <div class="wrap">
 
   <div class="top">
+
     <h1 class="name">Hi, I'm <span>AARHA</span></h1>
     <p class="sub" id="sub"></p>
     <div class="toggle" role="tablist" aria-label="Which version">
@@ -818,6 +982,46 @@ body.entered .ft{display:block}
   </form>
  </div>
 </section>
+
+<!-- ========== ROOM 05 · R U SUS? ========== -->
+<section class="yh">
+  <div class="wrap">
+    <h2>R U <span>SUS?</span></h2>
+    <p class="sub">I am. Help me out with quick questions? I promise it's fun.</p>
+    <p class="yh__lead">This is an experiment. I want to see how brands, governments, content and
+      sustainability actually land with people, and where the gaps are. All questions have
+      options, so there is nothing to type. <em>let's figure together!</em></p>
+    <div class="qcards">
+      <button class="qcard c1" data-q="sells">
+        <span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5v3a1 1 0 0 0 1 1H7l5.5 3.8V5.7L7 9.5H4.5a1 1 0 0 0-1 1Z"/><path d="M16.2 9.2a4 4 0 0 1 0 5.6"/><path d="M18.8 6.6a7.6 7.6 0 0 1 0 10.8"/></svg></span>
+        <b>What Sells?</b>
+        <i>it's all branding &amp; communication</i>
+        <u>Which headlines, brands and faces hit a chord? Ten questions on what actually makes you
+          stop scrolling.</u>
+        <s>start <em>&rarr;</em></s>
+      </button>
+      <button class="qcard c2" data-q="state">
+        <span class="ring"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2"/><path d="M12 3.4c2.3 2.4 3.5 5.4 3.5 8.6s-1.2 6.2-3.5 8.6c-2.3-2.4-3.5-5.4-3.5-8.6S9.7 5.8 12 3.4Z"/></svg></span>
+        <b>State of Denial?</b>
+        <i>where do you think the world is headed</i>
+        <u>Which industries, countries and governments are getting it right? Ten questions on how
+          far we have come.</u>
+        <s>start <em>&rarr;</em></s>
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="qz" id="qz" hidden>
+  <div class="qz__bar">
+    <button class="qzbtn" id="qzBack" aria-label="previous question">
+      <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="trail" id="qzTrail" aria-hidden="true"></div>
+    <button class="qzbtn" id="qzClose" aria-label="close">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="qz__in" id="qzIn"></div>
+</div>
 
 <footer class="ft" id="ft">
   <div class="ft__in">
@@ -1323,10 +1527,9 @@ const ROOMS=[
  {k:"pf", n:"Aarha's Portfolio",  s:"skills, expertise and experience",                    live:1},
  {k:"hp", n:"How I Can Help You", s:"modern problems? modern solutions.",                  live:1},
  {k:"fm", n:"Let's Collaborate",  s:"say hi",                                              live:1},
- {k:"quiz",n:"R U Sus?",          s:"quizzes, check how sus you really are"},
- {k:"blog",n:"Sus Blog",          s:"myth-busting, greenwashing, and the questions nobody's asking"},
- {k:"you", n:"You Can Help Me",   s:"find a gap, pick my next topic or just share your views"},
- {k:"irl", n:"Sus IRL",           s:"everything I post, gathered in one place"}
+ {k:"you", n:"R U Sus?",          s:"I am. So, some quick questions?",                     live:1},
+ {k:"blog",n:"Sus Blog",          s:"myth-busting, greenwashing, better questions"},
+ {k:"irl", n:"Sus IRL",           s:"everything I post, in one place"}
 ];
 
 const nav=document.getElementById('nav'), navBtn=document.getElementById('navBtn'),
@@ -1339,22 +1542,39 @@ const FTSOC='<div class="ftsoc">'+
 document.getElementById('ftSoc').innerHTML=FTSOC;
 document.getElementById('navSoc').innerHTML=FTSOC;
 
+/* The bar, the sus map and the footer all flip against the room they are
+   sitting on. This works out which rooms count as dark and tags the body,
+   so nothing has to be remembered when a new room is added. Watching the
+   class attribute means it also catches openForm and anything else that
+   changes rooms without going through goRoom. */
+function syncDark(){
+  const c=document.body.classList;
+  const dark = c.contains('on-fm') ||
+    (c.contains('pro-mode') && !c.contains('on-pf') && !c.contains('on-hp') && !c.contains('on-yh'));
+  if(dark!==c.contains('darkroom')) c.toggle('darkroom',dark);
+}
+if(window.MutationObserver)new MutationObserver(syncDark).observe(document.body,{attributes:true,attributeFilter:['class']});
+syncDark();
+
 function currentRoom(){
   const c=document.body.classList;
   if(!c.contains('entered'))return '';
-  return c.contains('on-pf')?'pf':c.contains('on-hp')?'hp':c.contains('on-fm')?'fm':'hi';
+  return c.contains('on-pf')?'pf':c.contains('on-hp')?'hp':c.contains('on-fm')?'fm'
+        :c.contains('on-yh')?'you':'hi';
 }
 
 function goRoom(k){
   closeSheet();
   if(k==='fm'){
+    document.body.classList.remove('on-yh');    /* openForm does not know about it */
     const on=document.querySelector('.wcard[aria-selected="true"]');
     openForm(on?on.dataset.a:'one');            /* keeps the dropdowns in step */
   }else{
     const b=document.body;
-    b.classList.remove('on-pf','on-hp','on-fm');
+    b.classList.remove('on-pf','on-hp','on-fm','on-yh');
     if(k==='pf')b.classList.add('on-pf');
     if(k==='hp')b.classList.add('on-hp');
+    if(k==='you')b.classList.add('on-yh');
     window.scrollTo(0,0);
   }
   closeNav();
@@ -1364,7 +1584,7 @@ function goRoom(k){
 function toGate(){
   closeNav(); closeSheet();
   const b=document.body;
-  b.classList.remove('on-pf','on-hp','on-fm','entered','leaving');
+  b.classList.remove('on-pf','on-hp','on-fm','on-yh','entered','leaving');
   b.classList.add('locked');
   window.scrollTo(0,0);
   document.documentElement.scrollTop=0; b.scrollTop=0;
@@ -1431,6 +1651,348 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
 document.getElementById('barMark').addEventListener('click',toGate);
 document.querySelectorAll('.goGate').forEach(b=>b.addEventListener('click',toGate));
 document.querySelectorAll('.goSayHi').forEach(b=>b.addEventListener('click',()=>goRoom('fm')));
+
+/* ===================== R U SUS? =====================
+   Two quizzes, ten questions each, every answer a tap. Pick up to three
+   unless one:1. ask: adds a short text field. s: is the short label used in
+   the recap and as the spreadsheet column. Every headline and name below is
+   a real 2026 story or a real person, checked, not invented.            */
+
+const QUIZ={
+sells:{name:"What Sells?",short:"What Sells",sub:"branding and communication",q:[
+ {s:"headline",t:"Which headline would you actually read?",o:[
+  "Forest fires tear through Europe","Seven elephants killed by a train",
+  "Wind and solar overtake gas","Data centres are draining water",
+  "Delhi among the world's worst air","Brazil grows its forests back",
+  "Coral reefs hit record bleaching","Greenwashing now costs 4% of sales"]},
+ {s:"platform",t:"Where do you come across this stuff?",o:[
+  "Instagram","YouTube","LinkedIn","News apps","Podcasts","Documentaries","Nowhere, really"]},
+ {s:"format",t:"Which format do you actually watch?",o:[
+  "Explainer: an expert breaks it down","Reel: a creator, fast cuts",
+  "Street interview: real people, real answers","Podcast: the long conversation",
+  "Stand-up: the joke version","Documentary: a film or a series","none of these"]},
+ {s:"voice",t:"Whose voice do you listen to on this?",
+  ico:["M4 16.5l5-5.5 3.5 3.5L20 7","M12 3.4a2.9 2.9 0 0 1 2.9 2.9v4.8a2.9 2.9 0 0 1-5.8 0V6.3A2.9 2.9 0 0 1 12 3.4Z|M5.6 11.1a6.4 6.4 0 0 0 12.8 0|M12 17.5v3.1","M3.6 8.2h16.8v11.4H3.6z|M8.4 4.4 12 8.2l3.6-3.8","m12 3.7 2.5 5.1 5.6.8-4 3.9 1 5.6-5.1-2.7-5.1 2.7 1-5.6-4-3.9 5.6-.8z","M4.2 10.2v3.2a1 1 0 0 0 1 1h2l4.8 3.4V5.8L7.2 9.2h-2a1 1 0 0 0-1 1Z|M15.8 9.4a3.6 3.6 0 0 1 0 5.2","M7.2 3.6h9.6v6.6H7.2z|M12 10.2V20.4|M9.2 14.6h5.6","M12 4.6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z|M4.8 19.4c2-4.2 4.8-5.4 7.2-5.4s5.2 1.2 7.2 5.4|M4.8 19.4h14.4","M3.6 9.4h16.8v10.2H3.6z|M3.6 9.4 5.8 4.6l14.6 1.6-.8 3.2|M8.4 9.2 10.8 4.8|M13.4 9.6l2.4-4.4","M12 3.6a8.4 8.4 0 1 0 0 16.8 8.4 8.4 0 0 0 0-16.8Z|M3.6 12h16.8|M12 3.6c2.2 2.3 3.3 5.2 3.3 8.4s-1.1 6.1-3.3 8.4c-2.2-2.3-3.3-5.2-3.3-8.4S9.8 5.9 12 3.6Z","M6.4 6.4l11.2 11.2|M17.6 6.4 6.4 17.6"],o:[
+  "Nikhil Kamath, investor","David Attenborough, broadcaster","National Geographic, the channel",
+  "Priyanka Chopra, actor","Leonardo DiCaprio, campaigner","Vanessa Nakate, activist",
+  "Sadhguru, spiritual leader","Don't Look Up, the film","The United Nations","none of these"]},
+ {s:"believe",t:"Which brand's sustainability claims do you believe?",o:[
+  "Nike","Apple","Patagonia","Tata","Mahindra","Unilever","Netflix","Minimalist","Zara",
+  "none of these"]},
+ {s:"suspect",t:"In your opinion, who is greenwashing?",o:[
+  "Oil and gas","Fast fashion","Beauty and cosmetics","Airlines","Food and drinks",
+  "Banks and finance","Big tech and AI","none of these"]},
+ {s:"emotion",t:"Which emotion actually moves you?",
+  em:["\ud83d\ude14","\ud83d\ude30","\ud83c\udf31","\ud83d\ude02","\ud83d\ude24","\ud83d\udcca","\u2715"],o:[
+  "Guilt: we are taking from the next lot","Fear: it is coming for us next",
+  "Hope: some of it is working","Humour: laugh now, think later",
+  "Anger: somebody has to answer","Proof: just show me the numbers","none of these"]},
+ {s:"understand",t:"Which of these words do you actually understand?",o:[
+  "Eco-friendly","Organic","Carbon neutral","Net zero","Circular economy","ESG","Greenwashing",
+  "none of these"]},
+ {s:"scrollpast",t:"And which of them do you scroll past?",o:[
+  "Eco-friendly","Organic","Carbon neutral","Net zero","Circular economy","ESG","Greenwashing",
+  "none of these"]},
+ {s:"makenext",t:"What content should I make next?",o:[
+  "Street interviews: real people, real questions","Myth busting: one green claim at a time",
+  "Rankings: the best five, the worst five","Real stories: the people doing the work",
+  "Tips and tricks: at home, at work","Breaking news: decoded, good and bad","none of these"]}
+]},
+state:{name:"State of Denial?",short:"State of Denial",sub:"where the world is headed",q:[
+ {s:"industry",t:"For a better tomorrow, which industry must change today?",o:[
+  "Oil, gas and coal","Fashion and textiles","Food and agriculture","Construction and cement",
+  "Transport and aviation","IT and data centres","Beauty and cosmetics","none of these"]},
+ {s:"country",t:"Which country is actually getting it right?",o:[
+  "Denmark","Sweden","Germany","China","United States","India","Brazil","none of these"]},
+ {s:"citybest",t:"Which city feels modern, green and well planned?",o:[
+  "Copenhagen","Singapore","Tokyo","Amsterdam","New York","Dubai","Bengaluru","none of these"]},
+ {s:"cityworst",t:"And which feels furthest from that?",o:[
+  "Delhi: the air","Jakarta: sinking","Cairo: running dry","Lagos: flooding and waste",
+  "Los Angeles: wildfires","Phoenix: unliveable heat","none of these"]},
+ {s:"government",t:"How is your government doing on this?",
+  ask:"and your country is",askk:"your country",o:[
+  "Genuinely impressive","Trying, slowly","All talk, no action","Actively making it worse",
+  "No idea what they are doing","No strong views either way"]},
+ {s:"needs",t:"What would genuinely help your country right now?",o:[
+  "Rules and regulations","Enforcing the rules we have","Funding and incentives",
+  "Political will","Public awareness","Education and skills",
+  "Technology and infrastructure","Transparency and access to data","none of these"]},
+ {s:"whopays",t:"... and who should be paying for that?",o:[
+  "The government","The biggest polluting companies","Wealthy countries and allies",
+  "Taxpayers, through public spending","Shoppers, through higher prices","none of these"]},
+ {s:"behaviour",t:"What would change your buying decisions?",o:[
+  "If it were cheaper","If the law required it","If it were just as convenient",
+  "If friends and family did it","If celebs or influencers I like did it",
+  "If it affected my health","Honestly, nothing would"]},
+ {s:"standing",t:"Where do you think the world stands today?",one:1,o:[
+  "Ahead of where I expected","Moving, but far too slowly","Badly behind","Going backwards",
+  "No idea, genuinely"]},
+ {s:"explain",t:"What would you really want someone to explain?",o:[
+  "How carbon offsets work","Which brands are greenwashing",
+  "Green, eco, organic: the difference","Are electric cars really cleaner",
+  "What ChatGPT costs the planet","Why green alternatives cost more",
+  "Is India far behind Europe?","none of these"]}
+]}};
+
+const RAMP=[
+ ["#FAF6EC","#141509","#FFFFFF","#1E2618","#FFF9EC"],
+ ["#F7F0DC","#141509","#FFFDF4","#1E2618","#FFF9EC"],
+ ["#F3E9CB","#141509","#FEFAEE","#1E2618","#FFF9EC"],
+ ["#EFE0B4","#141509","#FDF6E6","#1E2618","#FFF9EC"],
+ ["#E9D293","#141509","#FBF1DC","#1E2618","#FFF9EC"],
+ ["#2F4021","#FFF9EC","#3D5230","#E9A81D","#141509"],
+ ["#2A3A1E","#FFF9EC","#374B2B","#E9A81D","#141509"],
+ ["#25331A","#FFF9EC","#314327","#E9A81D","#141509"],
+ ["#202C17","#FFF9EC","#2B3B22","#E9A81D","#141509"],
+ ["#1B2513","#FFF9EC","#26331D","#E9A81D","#141509"]];
+const ENDSTEP=["#171F10","#FFF9EC","#222D19","#E9A81D","#141509"];
+
+/* Every finished quiz lands in the Google Sheet. ALSO_EMAIL sends you a copy
+   by email at the same time, as a safety net while the sheet is new. Once you
+   trust the sheet, set it to false and the emails stop. If SHEET_URL is ever
+   emptied, email takes over on its own so nothing is ever lost. */
+const SHEET_URL="https://script.google.com/macros/s/AKfycbwFNUhcGa_muTUlLwT3Aa6LDCUvNeQUes64oePlSgfkW0LH0wiC45_BPfPcAFXvIpcY/exec";
+const ALSO_EMAIL=true;
+
+const qz=document.getElementById('qz'), qzIn=document.getElementById('qzIn'),
+      qzTrail=document.getElementById('qzTrail'), qzBack=document.getElementById('qzBack');
+const FLAG='<svg viewBox="0 0 24 24"><path d="M6 2v20h2v-8h11l-3-5 3-5H6z"/></svg>';
+let QK=null, QI=0, QA=[], QX={}, QSTART=0;
+
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+  .replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function paint(i){
+  const s = i<0 ? ENDSTEP : RAMP[Math.min(i,RAMP.length-1)];
+  qz.style.setProperty('--qbg',s[0]);
+  qz.style.setProperty('--qfg',s[1]);
+  qz.style.setProperty('--qcard',s[2]);
+  qz.style.setProperty('--qsel',s[3]);
+  qz.style.setProperty('--qselfg',s[4]);
+  const dark = i<0 || i>=5;
+  qz.style.setProperty('--qln',dark?'rgba(255,249,236,.34)':'rgba(20,21,9,.22)');
+  qz.style.setProperty('--qtint',dark?'rgba(255,249,236,.09)':'rgba(20,21,9,.06)');
+}
+
+function trail(){
+  const n=QUIZ[QK].q.length; let h='';
+  for(let i=0;i<n;i++){
+    const done=i<QI, now=i===QI;
+    if(i)h+='<i class="seg'+(i<=QI?' on':'')+'"></i>';
+    h+= i===n-1 ? '<i class="peak'+(QI>=n-1?' on':'')+'">'+FLAG+'</i>'
+                : '<i class="dot'+(done||now?' on':'')+(now?' now':'')+'"></i>';
+  }
+  qzTrail.innerHTML=h;
+}
+
+function openQuiz(k){
+  QK=k; QI=0; QA=QUIZ[k].q.map(()=>[]); QX={}; QSTART=Date.now();
+  qz.hidden=false;
+  document.documentElement.style.overflow='hidden';
+  drawQ();
+}
+function closeQuiz(){
+  qz.hidden=true;
+  document.documentElement.style.overflow='';
+}
+
+function drawQ(flash,alert){
+  const set=QUIZ[QK], q=set.q[QI], last=QI===set.q.length-1, picked=QA[QI]||[];
+  paint(QI); trail();
+  qzBack.disabled = QI===0;
+  const longest=Math.max(...q.o.map(o=>o.length));
+  qzIn.innerHTML=
+    '<p class="qz__kick">'+esc(set.short).toUpperCase()+' &middot; '+(QI+1)+' OF '+set.q.length+'</p>'+
+    '<h3 class="qz__q">'+esc(q.t)+'</h3>'+
+    '<p class="qz__hint">'+(q.one?'pick one':'pick up to three')+'</p>'+
+    '<div class="opts'+(longest>34?' wide':'')+'" id="qzOpts">'+
+      q.o.map((o,i)=>{
+        const badge = q.em ? '<span class="opt__k em">'+(q.em[i]||'')+'</span>'
+                    : q.ico ? '<span class="opt__k ico"><svg viewBox="0 0 24 24">'+
+                        q.ico[i].split('|').map(d=>'<path d="'+d+'"/>').join('')+'</svg></span>'
+                    : '<span class="opt__k">'+(i+1)+'</span>';
+        return '<button class="opt'+(picked.includes(i)?' on':'')+'" data-i="'+i+'">'+
+          badge+'<span>'+esc(o)+'</span></button>';}).join('')+
+    '</div>'+
+    (q.ask?'<div class="qask"><label for="qzAsk">'+esc(q.ask)+'</label>'+
+      '<input id="qzAsk" type="text" autocomplete="country-name" placeholder="type it here (required)" value="'+
+      esc(QX[q.askk]||'')+'"></div>':'')+
+    '<div class="qz__foot"><button class="qznext" id="qzNext">'+
+      (last?'see my answers':'next')+' <span>&rarr;</span></button>'+
+      '<span class="qz__note" id="qzNote">'+(picked.length?picked.length+' picked':'')+'</span></div>'+
+    '<p class="qz__flash'+(alert?' alert':'')+'" id="qzFlash"'+(flash?'':' hidden')+'>'+
+      esc(flash||'')+'</p>';
+  qzIn.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>pick(+b.dataset.i)));
+  document.getElementById('qzNext').addEventListener('click',()=>{ saveAsk(); step(); });
+  qz.scrollTop=0;
+}
+
+function saveAsk(){
+  if(!QK)return;
+  const q=QUIZ[QK].q[QI], el=document.getElementById('qzAsk');
+  if(q.ask && el) QX[q.askk]=el.value.trim();
+}
+
+function pick(i){
+  if(!QK)return;
+  const q=QUIZ[QK].q[QI], lastOpt=q.o.length-1;
+  let cur=QA[QI]||[];
+  if(q.one){ cur=[i]; }
+  else if(i===lastOpt){ cur = cur.includes(lastOpt)?[]:[lastOpt]; }
+  else if(cur.includes(i)){ cur=cur.filter(x=>x!==i); }
+  else {
+    cur=cur.filter(x=>x!==lastOpt);
+    if(cur.length>=3){ flash('Three is the limit. Tap one off to swap it for this.'); return; }
+    cur=cur.concat(i);
+  }
+  QA[QI]=cur.sort((a,b)=>a-b);
+  qzIn.querySelectorAll('.opt').forEach(b=>b.classList.toggle('on',QA[QI].includes(+b.dataset.i)));
+  note(QA[QI].length?QA[QI].length+' picked':''); flash('');
+}
+function note(t){ const n=document.getElementById('qzNote'); if(n)n.textContent=t; }
+function flash(t,alert){
+  const f=document.getElementById('qzFlash');
+  if(!f)return;
+  f.textContent=t; f.hidden=!t; f.classList.toggle('alert',!!alert);
+}
+
+function step(){ if(!QK)return; if(QI<QUIZ[QK].q.length-1){ QI++; drawQ(); } else drawEnd(); }
+function back(){ saveAsk(); if(QI>0){ QI--; drawQ(); } }
+function goQ(n){ QI=n; drawQ(); }
+
+function answerText(n){
+  const q=QUIZ[QK].q[n];
+  return (QA[n]||[]).map(i=>q.o[i]).join(', ');
+}
+
+function firstGap(){
+  const set=QUIZ[QK];
+  for(let i=0;i<set.q.length;i++){
+    if(!(QA[i]||[]).length) return i;
+    if(set.q[i].ask && !QX[set.q[i].askk]) return i;
+  }
+  return -1;
+}
+
+function drawEnd(){
+  paint(-1); trail(); qzBack.disabled=false;
+  const set=QUIZ[QK];
+  qzIn.innerHTML=
+   '<h3 class="qz__q">Wow, that is a lot.</h3>'+
+   '<p class="qz__hint sunny">quickly recapping what you said, and thank you for saying it.</p>'+
+   '<div class="recap">'+set.q.map((q,n)=>{
+      const a=answerText(n);
+      return '<div><b><u>'+(n+1)+'</u>'+esc(q.t)+'</b>'+
+        '<span'+(a?'':' class="miss"')+'>'+esc(a||'not answered yet')+'</span>'+
+        '<button class="revisit" data-n="'+n+'">'+(a?'change':'answer')+'</button></div>';
+   }).join('')+'</div>'+
+   '<p class="qz__last">AND LAST, THREE OPTIONAL QUESTIONS</p>'+
+   '<div class="qzf">'+
+     '<div><label for="qzC">Any other comments? <em>(optional)</em></label>'+
+     '<textarea id="qzC" placeholder="a thought, a gap in the industry, or just sharing your views"></textarea></div>'+
+     '<div class="two">'+
+       '<div><label for="qzN">Your name <em>(optional)</em></label>'+
+       '<input id="qzN" type="text" autocomplete="name"></div>'+
+       '<div><label for="qzE">Your email <em>(optional, if you want a reply)</em></label>'+
+       '<input id="qzE" type="email" autocomplete="email"></div>'+
+     '</div>'+
+     '<label class="qzsub"><input id="qzS" type="checkbox">'+
+     '<span>Send me the Sus Blogs!</span></label>'+
+     '<input class="qz__hp" id="qzHp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+   '</div>'+
+   '<div class="qz__foot"><button class="qznext" id="qzSend">send it <span>&rarr;</span></button></div>'+
+   '<div id="qzErr"></div>';
+  qzIn.querySelectorAll('.revisit').forEach(b=>b.addEventListener('click',()=>goQ(+b.dataset.n)));
+  document.getElementById('qzSend').addEventListener('click',send);
+  qz.scrollTop=0;
+}
+
+async function send(){
+  const gap=firstGap();
+  if(gap>-1){
+    const wasAnswered=(QA[gap]||[]).length;
+    QI=gap;                                   /* take them straight to it */
+    drawQ(wasAnswered
+      ? 'Almost there. Tell me which country and you are done.'
+      : 'This one is still blank. Answer it and you can send the lot.', true);
+    return;
+  }
+  const btn=document.getElementById('qzSend'), err=document.getElementById('qzErr');
+  const email=(document.getElementById('qzE').value||'').trim();
+  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+    err.innerHTML='<p class="qz__err">That email does not look quite right. Fix it, or clear it, and send again.</p>';
+    return;
+  }
+  if(document.getElementById('qzHp').value)return;
+  btn.disabled=true; btn.textContent='sending...';
+  const set=QUIZ[QK];
+  const payload={quiz:set.short,when:new Date().toISOString(),
+    seconds:Math.round((Date.now()-QSTART)/1000),
+    name:(document.getElementById('qzN').value||'').trim(),email:email,
+    subscribe:document.getElementById('qzS').checked?'yes':'no',
+    comment:(document.getElementById('qzC').value||'').trim()};
+  set.q.forEach((q,n)=>{ payload[q.s]=answerText(n); if(q.ask)payload[q.askk]=QX[q.askk]||''; });
+  const emailIt=()=>{
+    const lines=set.q.map((q,n)=>q.t+'\n  '+answerText(n)+
+      (q.ask?'\n  '+q.ask+': '+(QX[q.askk]||''):'')).join('\n\n');
+    return fetch('https://api.web3forms.com/submit',{method:'POST',
+      headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:'28f3eaaa-9149-40ec-b0b0-ec89b91e3ec4',
+        subject:'R U SUS: '+set.short+(payload.name?' from '+payload.name:''),
+        from_name:'YAMS website',
+        message:set.name+'\n\n'+lines+'\n\ncomments:\n  '+(payload.comment||'none')+
+          '\n\nname: '+(payload.name||'not given')+'\nemail: '+(payload.email||'not given')+
+          '\nsus blog: '+payload.subscribe+'\ntook '+payload.seconds+' seconds'})})
+      .then(r=>{ if(!r.ok)throw new Error('post failed'); });
+  };
+  try{
+    if(SHEET_URL){
+      await fetch(SHEET_URL,{method:'POST',mode:'no-cors',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+      if(ALSO_EMAIL)emailIt().catch(()=>{});     /* a copy, never blocks the send */
+    }else{
+      await emailIt();                           /* the only channel, must land */
+    }
+    drawSent();
+  }catch(e){
+    btn.disabled=false; btn.innerHTML='send it <span>&rarr;</span>';
+    err.innerHTML='<p class="qz__err">That did not go through. Check your connection and try once more.</p>';
+  }
+}
+
+function drawSent(){
+  const other = QK==='sells'?'state':'sells';
+  qzBack.disabled=true;
+  qzIn.innerHTML='<div class="qz__sent">'+
+    '<p class="big">thank you,<br>genuinely.</p>'+
+    '<p class="fig">we\'ll figure.</p>'+
+    '<p>That goes straight into what I make next. If you left your email I will probably write '+
+    'back, and if something you picked turns into a post, you will see it.</p>'+
+    '<div class="row"><button class="qznext" id="qzOther">try '+esc(QUIZ[other].short)+
+    ' <span>&rarr;</span></button>'+
+    '<button class="qzghost" id="qzDone">back to the site</button></div></div>';
+  document.getElementById('qzOther').addEventListener('click',()=>openQuiz(other));
+  document.getElementById('qzDone').addEventListener('click',closeQuiz);
+  qz.scrollTop=0;
+}
+
+document.querySelectorAll('.qcard').forEach(d=>
+  d.addEventListener('click',()=>openQuiz(d.dataset.q)));
+document.getElementById('qzClose').addEventListener('click',closeQuiz);
+qzBack.addEventListener('click',back);
+document.addEventListener('keydown',e=>{
+  if(qz.hidden)return;
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'){
+    if(e.key==='Enter'&&e.target.id==='qzAsk'){e.preventDefault();saveAsk();step();}
+    return;
+  }
+  if(e.key==='Escape')return closeQuiz();
+  if(e.key==='ArrowLeft')return back();
+  const q=QUIZ[QK]&&QUIZ[QK].q[QI];
+  if(!q)return;
+  if(/^[1-9]$/.test(e.key)){ const i=+e.key-1; if(i<q.o.length)pick(i); }
+  if(e.key==='Enter'||e.key==='ArrowRight'){ saveAsk(); step(); }
+});
 
 </script>
 </body>
