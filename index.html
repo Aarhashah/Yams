@@ -603,8 +603,8 @@ body.on-pf .yh,body.on-hp .yh,body.on-fm .yh{display:none}
   font-size:clamp(46px,8vw,104px);letter-spacing:-.05em;line-height:.9}
 .yh h2 span{color:var(--blue)}
 .yh .sub{max-width:30ch}
-.yh__lead{font-size:clamp(15.5px,1.2vw,17px);line-height:1.62;max-width:60ch;
-  margin-top:clamp(18px,2vw,26px);opacity:.82}
+.yh__lead{font-size:clamp(16px,1.3vw,19px);line-height:1.62;max-width:62ch;
+  margin-top:clamp(18px,2vw,26px)}
 .yh__lead em{font-family:var(--serif);font-style:italic;font-size:1.12em;color:var(--blue);opacity:1}
 .qcards{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.8vw,24px);
   margin-top:clamp(52px,5vw,74px)}
@@ -637,6 +637,7 @@ body.on-pf .yh,body.on-hp .yh,body.on-fm .yh{display:none}
   overflow-y:auto;-webkit-overflow-scrolling:touch;
   transition:background .7s cubic-bezier(.16,1,.3,1),color .7s}
 .qz[hidden]{display:none}
+body.qz-open .yh,body.qz-open .ft,body.qz-open .bar{visibility:hidden}
 .qz__bar{position:sticky;top:0;z-index:3;flex:0 0 auto;display:flex;align-items:center;
   gap:clamp(11px,1.8vw,20px);padding:14px clamp(16px,4vw,48px);background:var(--qbg,var(--paper));
   transition:background .7s cubic-bezier(.16,1,.3,1)}
@@ -1710,7 +1711,7 @@ state:{name:"State of Denial?",short:"State of Denial",sub:"where the world is h
   "Delhi: the air","Jakarta: sinking","Cairo: running dry","Lagos: flooding and waste",
   "Los Angeles: wildfires","Phoenix: unliveable heat","none of these"]},
  {s:"government",t:"How is your government doing on this?",
-  ask:"and your country is",askk:"your country",o:[
+  ask:"and your country is",askk:"your country",one:1,o:[
   "Genuinely impressive","Trying, slowly","All talk, no action","Actively making it worse",
   "No idea what they are doing","No strong views either way"]},
  {s:"needs",t:"What would genuinely help your country right now?",o:[
@@ -1752,7 +1753,7 @@ const ENDSTEP=["#171F10","#FFF9EC","#222D19","#E9A81D","#141509"];
    trust the sheet, set it to false and the emails stop. If SHEET_URL is ever
    emptied, email takes over on its own so nothing is ever lost. */
 const SHEET_URL="https://script.google.com/macros/s/AKfycbwFNUhcGa_muTUlLwT3Aa6LDCUvNeQUes64oePlSgfkW0LH0wiC45_BPfPcAFXvIpcY/exec";
-const ALSO_EMAIL=true;
+const ALSO_EMAIL=false;
 
 const qz=document.getElementById('qz'), qzIn=document.getElementById('qzIn'),
       qzTrail=document.getElementById('qzTrail'), qzBack=document.getElementById('qzBack');
@@ -1772,6 +1773,7 @@ function paint(i){
   const dark = i<0 || i>=5;
   qz.style.setProperty('--qln',dark?'rgba(255,249,236,.34)':'rgba(20,21,9,.22)');
   qz.style.setProperty('--qtint',dark?'rgba(255,249,236,.09)':'rgba(20,21,9,.06)');
+  if(!qz.hidden)document.documentElement.style.backgroundColor=s[0];
 }
 
 function trail(){
@@ -1785,15 +1787,36 @@ function trail(){
   qzTrail.innerHTML=h;
 }
 
+/* On a phone the keyboard shrinks the visible area but not the page, so a
+   fixed overlay ends up shorter than the screen and the room behind shows
+   through at the bottom. Pinning the overlay to the visual viewport fixes it,
+   and matching the page background means any sliver is invisible anyway. */
+function fitQz(){
+  const vv=window.visualViewport;
+  if(qz.hidden||!vv){ qz.style.top=qz.style.bottom=qz.style.height=''; return; }
+  qz.style.top=vv.offsetTop+'px';
+  qz.style.bottom='auto';
+  qz.style.height=vv.height+'px';
+}
+if(window.visualViewport){
+  visualViewport.addEventListener('resize',fitQz);
+  visualViewport.addEventListener('scroll',fitQz);
+}
+
 function openQuiz(k){
   QK=k; QI=0; QA=QUIZ[k].q.map(()=>[]); QX={}; QSTART=Date.now();
   qz.hidden=false;
+  document.body.classList.add('qz-open');
   document.documentElement.style.overflow='hidden';
   drawQ();
+  fitQz();
 }
 function closeQuiz(){
   qz.hidden=true;
+  document.body.classList.remove('qz-open');
   document.documentElement.style.overflow='';
+  document.documentElement.style.backgroundColor='';
+  fitQz();
 }
 
 function drawQ(flash,alert){
@@ -1833,15 +1856,23 @@ function saveAsk(){
   if(q.ask && el) QX[q.askk]=el.value.trim();
 }
 
+/* Only a genuine opt-out clears the rest. Position in the list means nothing:
+   the last option is often a real answer. */
+const SOLO=['none of these','nowhere, really','honestly, nothing would','no idea, genuinely'];
+function soloIndex(q){
+  if(q._solo===undefined) q._solo=q.o.findIndex(o=>SOLO.indexOf(o.toLowerCase())>-1);
+  return q._solo;
+}
+
 function pick(i){
   if(!QK)return;
-  const q=QUIZ[QK].q[QI], lastOpt=q.o.length-1;
+  const q=QUIZ[QK].q[QI], solo=soloIndex(q);
   let cur=QA[QI]||[];
   if(q.one){ cur=[i]; }
-  else if(i===lastOpt){ cur = cur.includes(lastOpt)?[]:[lastOpt]; }
+  else if(i===solo){ cur = cur.includes(solo)?[]:[solo]; }
   else if(cur.includes(i)){ cur=cur.filter(x=>x!==i); }
   else {
-    cur=cur.filter(x=>x!==lastOpt);
+    cur=cur.filter(x=>x!==solo);
     if(cur.length>=3){ flash('Three is the limit. Tap one off to swap it for this.'); return; }
     cur=cur.concat(i);
   }
@@ -1945,14 +1976,25 @@ async function send(){
           '\nsus blog: '+payload.subscribe+'\ntook '+payload.seconds+' seconds'})})
       .then(r=>{ if(!r.ok)throw new Error('post failed'); });
   };
+  /* The sheet gets the answers through sendBeacon, which hands the request to
+     the browser and returns at once. Waiting on Apps Script was what made this
+     feel slow: it can take a few seconds and, being cross origin, the reply
+     cannot be read anyway, so there was nothing to wait for. */
+  if(SHEET_URL){
+    const blob=new Blob([JSON.stringify(payload)],{type:'text/plain;charset=utf-8'});
+    let queued=false;
+    try{ if(navigator.sendBeacon) queued=navigator.sendBeacon(SHEET_URL,blob); }catch(e){}
+    if(!queued){
+      fetch(SHEET_URL,{method:'POST',mode:'no-cors',keepalive:true,
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify(payload)}).catch(()=>{});
+      emailIt().catch(()=>{});                   /* belt and braces if it balked */
+    }else if(ALSO_EMAIL){ emailIt().catch(()=>{}); }
+    drawSent();
+    return;
+  }
   try{
-    if(SHEET_URL){
-      await fetch(SHEET_URL,{method:'POST',mode:'no-cors',
-        headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
-      if(ALSO_EMAIL)emailIt().catch(()=>{});     /* a copy, never blocks the send */
-    }else{
-      await emailIt();                           /* the only channel, must land */
-    }
+    await emailIt();                             /* the only channel, must land */
     drawSent();
   }catch(e){
     btn.disabled=false; btn.innerHTML='send it <span>&rarr;</span>';
@@ -1966,10 +2008,10 @@ function drawSent(){
   qzIn.innerHTML='<div class="qz__sent">'+
     '<p class="big">thank you,<br>genuinely.</p>'+
     '<p class="fig">we\'ll figure.</p>'+
-    '<p>That goes straight into what I make next. If you left your email I will probably write '+
-    'back, and if something you picked turns into a post, you will see it.</p>'+
-    '<div class="row"><button class="qznext" id="qzOther">try '+esc(QUIZ[other].short)+
-    ' <span>&rarr;</span></button>'+
+    '<p>That goes straight into what I make next. If you left your email I will probably '+
+    'write back too :)</p>'+
+    '<div class="row"><button class="qznext" id="qzOther">try "'+esc(QUIZ[other].short)+
+    '" <span>&rarr;</span></button>'+
     '<button class="qzghost" id="qzDone">back to the site</button></div></div>';
   document.getElementById('qzOther').addEventListener('click',()=>openQuiz(other));
   document.getElementById('qzDone').addEventListener('click',closeQuiz);
