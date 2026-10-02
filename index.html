@@ -26,7 +26,7 @@ body.locked{overflow:hidden;height:100svh}
 body.leaving .gate{transform:translateY(-14%);opacity:0}
 body.entered .gate{display:none}
 body:not(.entered):not(.leaving) .hi{display:none}
-body.entered .yh{padding-top:calc(var(--barh) + clamp(26px,3vw,44px))}
+body.entered .yh,body.entered .sb{padding-top:calc(var(--barh) + clamp(26px,3vw,44px))}
 body::after{content:"";position:fixed;inset:0;z-index:99;pointer-events:none;opacity:.04;
  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
 
@@ -593,12 +593,242 @@ body.entered .ft{display:block}
   .ftsoc svg{width:17px;height:17px}
 }
 
+/* ===== ROOM 06 · SUS BLOG ===== */
+.sb{display:none;background:var(--paper);color:var(--ink);min-height:100svh;
+  padding:clamp(40px,5vw,70px) 0 clamp(56px,6vw,90px)}
+body.on-sb .sb{display:block}
+body.on-sb .hi,body.on-sb .pf,body.on-sb .hp,body.on-sb .fm,body.on-sb .yh{display:none}
+.sb h2{font-family:var(--display);font-weight:800;font-stretch:84%;
+  font-size:clamp(42px,7vw,96px);letter-spacing:-.05em;line-height:.9}
+.sb h2 span{color:var(--blue)}
+.sb .sub{max-width:40ch}
+
+.sblab{font-family:var(--display);font-weight:800;font-size:clamp(14px,1.3vw,17px);
+  letter-spacing:.07em;color:var(--blue);margin-top:clamp(34px,4vw,54px)}
+.sblab.first{margin-top:clamp(28px,3.2vw,42px)}
+.sbk{display:flex;flex-wrap:wrap;gap:9px;margin-top:clamp(26px,3vw,38px)}
+.sbk button{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.02em;
+  background:transparent;color:var(--ink);border:1.5px solid rgba(20,21,9,.26);border-radius:999px;
+  padding:9px 18px;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.sbk button:hover{border-color:var(--ink)}
+.sbk button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* the lead piece */
+.lead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:stretch;
+  width:100%;text-align:left;border:0;padding:0;cursor:pointer;background:none;font-family:inherit;
+  margin-top:clamp(28px,3.4vw,44px);border-radius:16px;overflow:hidden;
+  transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.lead:hover{transform:translateY(-4px)}
+.lead:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.lead__img{position:relative;min-height:clamp(220px,26vw,340px);overflow:hidden;background:var(--sage)}
+.lead__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.lead__img svg,.prow__img svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.45}
+.lead__img svg{width:clamp(64px,8vw,104px);height:clamp(64px,8vw,104px)}
+.prow__img svg{width:30px;height:30px}
+.lead__t{display:flex;flex-direction:column;padding:clamp(24px,2.8vw,38px)}
+.lead__m{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;
+  font-size:13px;letter-spacing:.07em;text-transform:uppercase;opacity:.75}
+.lead__m i{font-style:normal;opacity:.5}
+.lead h3{font-family:var(--display);font-weight:800;font-stretch:86%;
+  font-size:clamp(28px,3.4vw,46px);letter-spacing:-.045em;line-height:1.02;margin-top:14px}
+.lead p{font-size:clamp(16px,1.3vw,19px);line-height:1.6;margin-top:13px;opacity:.9}
+.lead__by{display:block;font-family:var(--display);font-weight:700;font-size:14.5px;
+  letter-spacing:-.01em;opacity:.75;margin-top:14px}
+.lead u{text-decoration:none;margin-top:auto;padding-top:clamp(18px,2.2vw,28px);
+  font-family:var(--display);font-weight:700;font-size:16.5px;letter-spacing:-.02em;align-self:flex-start;
+  border-bottom:2px solid currentColor;padding-bottom:2px}
+.lead:hover u em{display:inline-block;transform:translateX(5px);transition:transform .3s;font-style:normal}
+.tint-green{background:var(--olive);color:var(--cream)}
+.tint-ochre{background:var(--ochre);color:var(--ink)}
+.tint-dark{background:#26301F;color:var(--cream)}
+.tint-blue{background:var(--blue);color:#fff}
+@media (max-width:760px){
+  .lead{grid-template-columns:1fr}
+  .lead__img{min-height:190px}
+}
+
+/* the rest, as an index */
+.prows{margin-top:clamp(30px,3.6vw,48px);border-top:1.5px solid rgba(20,21,9,.18)}
+.prow{display:grid;grid-template-columns:96px minmax(0,1fr) auto;align-items:center;
+  gap:clamp(13px,2vw,26px);width:100%;text-align:left;background:none;border:0;
+  border-bottom:1.5px solid rgba(20,21,9,.18);padding:clamp(15px,1.7vw,22px) 4px;
+  color:inherit;font-family:inherit;cursor:pointer;
+  transition:padding-left .3s cubic-bezier(.16,1,.3,1),background .3s}
+.prow:hover{padding-left:14px;background:rgba(20,21,9,.035)}
+.prow:focus-visible{outline:2px solid var(--blue);outline-offset:-3px}
+.prow__img{width:96px;height:68px;border-radius:10px;overflow:hidden;position:relative}
+.prow__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.prow__img span{font-family:var(--serif);font-style:italic;font-size:26px;opacity:.4}
+.prow__t{min-width:0}
+.prow__t b{display:block;font-family:var(--display);font-weight:800;font-stretch:86%;
+  font-size:clamp(19px,2vw,26px);letter-spacing:-.035em;line-height:1.08;transition:color .25s}
+.prow:hover .prow__t b{color:var(--blue)}
+.prow__t i{display:block;font-style:normal;font-size:clamp(15.5px,1.25vw,17.5px);
+  line-height:1.55;opacity:.78;margin-top:7px}
+.prow__t em{display:block;font-style:normal;font-family:var(--display);font-weight:700;
+  font-size:13.5px;letter-spacing:-.01em;opacity:.6;margin-top:8px}
+.prow__m{text-align:right;font-family:var(--display);font-weight:700;font-size:12.5px;
+  letter-spacing:.06em;text-transform:uppercase;opacity:.6;white-space:nowrap}
+@media (max-width:620px){
+  .prow{grid-template-columns:72px minmax(0,1fr);gap:4px 14px}
+  .prow__img{width:72px;height:56px}
+  .prow__m{grid-column:2;text-align:left;margin-top:9px}
+}
+.sbempty{margin-top:30px;font-family:var(--serif);font-style:italic;font-size:19px;opacity:.6}
+
+.sbmore{margin-top:clamp(22px,2.6vw,30px);font-family:var(--display);font-weight:700;
+  font-size:16px;letter-spacing:-.02em;background:transparent;color:var(--blue);
+  border:1.5px solid var(--blue);border-radius:999px;padding:12px 22px;cursor:pointer;
+  transition:background .25s,color .25s}
+.sbmore:hover{background:var(--blue);color:#fff}
+.al{position:fixed;inset:0;z-index:570;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  background:var(--paper);color:var(--ink)}
+.al[hidden]{display:none}
+body.al-open .sb,body.al-open .ft,body.al-open .bar{visibility:hidden}
+.al__in{max-width:1080px;margin:0 auto;padding:clamp(56px,7vw,92px) clamp(22px,4.5vw,64px) clamp(44px,5vw,70px)}
+.al h3{font-family:var(--display);font-weight:800;font-stretch:84%;
+  font-size:clamp(32px,4.6vw,62px);letter-spacing:-.05em;line-height:1}
+.al h3 span{color:var(--blue)}
+
+/* the contribute band */
+.sbband{margin-top:clamp(44px,5vw,70px);border-radius:16px;background:#26301F;color:var(--cream);
+  padding:clamp(26px,3vw,40px);display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:space-between;gap:18px 30px}
+.sbband b{display:block;font-family:var(--display);font-weight:800;font-stretch:86%;
+  font-size:clamp(24px,2.8vw,36px);letter-spacing:-.04em;line-height:1.05}
+.sbband i{display:block;font-style:normal;font-size:clamp(16px,1.3vw,19px);
+  line-height:1.6;opacity:.86;margin-top:10px;max-width:52ch}
+.sbband button{flex:0 0 auto;font-family:var(--display);font-weight:700;font-size:16.5px;
+  letter-spacing:-.02em;background:var(--ochre);color:var(--ink);border:0;border-radius:999px;
+  padding:14px 26px;cursor:pointer;transition:transform .25s}
+.sbband button:hover{transform:translateY(-2px)}
+
+/* ===== THE READER ===== */
+.rd{position:fixed;inset:0;z-index:560;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  background:var(--paper);color:var(--ink)}
+.rd[hidden]{display:none}
+body.rd-open .sb,body.rd-open .ft,body.rd-open .bar{visibility:hidden}
+.rdx{position:fixed;top:16px;right:16px;z-index:3;width:44px;height:44px;display:grid;
+  place-items:center;cursor:pointer;background:var(--paper);color:var(--ink);
+  border:1.5px solid rgba(20,21,9,.26);border-radius:50%;padding:0}
+.rdx svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.rdx:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rd__in{max-width:720px;margin:0 auto;padding:clamp(56px,7vw,92px) clamp(22px,5vw,40px) clamp(40px,5vw,70px)}
+.rd__m{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:var(--display);
+  font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;opacity:.6}
+.rd__m i{font-style:normal;opacity:.45}
+.rd h1{font-family:var(--display);font-weight:800;font-stretch:86%;
+  font-size:clamp(32px,4.6vw,58px);letter-spacing:-.05em;line-height:1;margin-top:16px}
+.rd__stand{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.1vw,26px);
+  line-height:1.32;margin-top:16px;color:var(--blue)}
+.rd__by{display:flex;flex-wrap:wrap;align-items:center;gap:9px;font-family:var(--display);
+  font-weight:700;font-size:15px;letter-spacing:-.01em;margin-top:18px;
+  padding-top:16px;border-top:1px solid rgba(20,21,9,.16)}
+.rd__by i{font-style:normal;opacity:.4}
+.rd__by b{font-weight:700}
+.rd__by span{opacity:.7}
+.rd__hero{margin-top:clamp(26px,3vw,38px);border-radius:14px;overflow:hidden}
+.rd__hero{background:var(--sage)}
+.rd__hero img{display:block;width:100%;max-height:min(72vh,620px);object-fit:contain}
+.rd__body{margin-top:clamp(26px,3vw,40px)}
+.rd__body p{font-size:clamp(16.5px,1.35vw,19px);line-height:1.68;margin-bottom:1.15em}
+.rd__body h4{font-family:var(--display);font-weight:800;font-stretch:88%;
+  font-size:clamp(20px,1.9vw,25px);letter-spacing:-.03em;margin:clamp(28px,3vw,40px) 0 14px}
+.rd__body ul,.rd__body ol{margin:0 0 1.3em;padding:0;list-style:none}
+.rd__body li{position:relative;font-size:clamp(16px,1.3vw,18.5px);line-height:1.62;
+  padding:11px 0 11px 30px;border-bottom:1px solid rgba(20,21,9,.12)}
+.rd__body li:last-child{border-bottom:0}
+.rd__body ul li::before{content:"";position:absolute;left:4px;top:20px;width:7px;height:7px;
+  border-radius:50%;background:var(--blue)}
+.rd__body ol{counter-reset:n}
+.rd__body ol li{counter-increment:n}
+.rd__body ol li::before{content:counter(n);position:absolute;left:0;top:11px;
+  font-family:var(--display);font-weight:800;font-size:14px;color:var(--blue)}
+.rd__body li b{font-weight:700}
+.rd__body .src{font-size:14.5px;line-height:1.55;opacity:.6;margin-top:clamp(28px,3vw,40px);
+  padding-top:18px;border-top:1px solid rgba(20,21,9,.16)}
+.rd__end{margin-top:clamp(36px,4vw,56px)}
+.rd__next{display:flex;align-items:center;justify-content:space-between;gap:18px;width:100%;
+  text-align:left;background:var(--ochre-deep);color:#FFF9EC;border:0;border-radius:14px;
+  padding:clamp(20px,2.4vw,28px);cursor:pointer;font-family:inherit;
+  transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.rd__next:hover{transform:translateY(-3px)}
+.rd__next small{display:block;font-family:var(--display);font-weight:700;font-size:12.5px;
+  letter-spacing:.07em;text-transform:uppercase;opacity:.8}
+.rd__next b{display:block;font-family:var(--display);font-weight:800;font-stretch:86%;
+  font-size:clamp(20px,2vw,27px);letter-spacing:-.035em;line-height:1.1;margin-top:8px}
+.rd__next span.ar{font-size:24px;flex:0 0 auto}
+.rd__ask{margin-top:clamp(22px,2.6vw,32px);padding-top:clamp(22px,2.6vw,30px);
+  border-top:1.5px solid rgba(20,21,9,.18);display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:space-between;gap:14px 24px}
+.rd__ask i{font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.6vw,21px);
+  color:var(--blue)}
+.rd__cta{flex:0 0 auto;font-family:var(--display);font-weight:700;font-size:16px;
+  letter-spacing:-.02em;background:var(--blue);color:#fff;border:0;border-radius:999px;
+  padding:13px 24px;cursor:pointer;transition:transform .25s}
+.rd__cta:hover{transform:translateY(-2px)}
+
+/* ===== CONTRIBUTE ===== */
+.cb{position:fixed;inset:0;z-index:580;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  background:var(--olive-deep);color:var(--cream)}
+.cb[hidden]{display:none}
+body.cb-open .sb,body.cb-open .ft,body.cb-open .bar{visibility:hidden}
+.cbx{position:fixed;top:16px;right:16px;z-index:3;width:44px;height:44px;display:grid;
+  place-items:center;cursor:pointer;background:transparent;color:var(--cream);
+  border:1.5px solid rgba(255,249,236,.4);border-radius:50%;padding:0}
+.cbx svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.cbx:hover{background:var(--cream);color:var(--olive-deep)}
+.cb__in{max-width:780px;margin:0 auto;padding:clamp(56px,7vw,92px) clamp(22px,4.5vw,48px) clamp(44px,5vw,70px)}
+.cb h3{font-family:var(--display);font-weight:800;font-stretch:86%;
+  font-size:clamp(30px,4.4vw,56px);letter-spacing:-.05em;line-height:1}
+.cb h3 span{color:var(--ochre)}
+.cb__lead{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2vw,24px);
+  line-height:1.32;margin-top:14px;color:var(--ochre)}
+.cb__note{font-size:clamp(16px,1.3vw,19px);line-height:1.62;opacity:.86;
+  margin-top:clamp(16px,1.8vw,22px)}
+.cbf{display:grid;gap:clamp(20px,2.2vw,26px);margin-top:clamp(28px,3.2vw,40px)}
+.cbf label.lb{display:block;font-family:var(--display);font-weight:700;font-size:17px;
+  letter-spacing:-.02em;margin-bottom:10px}
+.cbf label.lb em{font-style:normal;font-weight:500;font-size:15px;opacity:.6}
+.cbf input[type=text],.cbf input[type=email],.cbf input[type=url],.cbf textarea{width:100%;
+  font-family:var(--body);font-size:16px;color:var(--ink);background:var(--cream);
+  border:1.5px solid transparent;border-radius:12px;padding:14px 16px}
+.cbf textarea{min-height:200px;resize:vertical;line-height:1.6}
+.cbf input:focus,.cbf textarea:focus{outline:0;border-color:var(--ochre)}
+.cbf .bad{border-color:#E0674A}
+.cbpills{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.cbpills button:last-child:nth-child(odd){grid-column:1/-1}
+@media (max-width:560px){.cbpills{grid-template-columns:1fr}
+  .cbpills button:last-child:nth-child(odd){grid-column:auto}}
+.cbpills button{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:-.02em;
+  background:transparent;color:var(--cream);border:1.5px solid rgba(255,249,236,.36);
+  border-radius:999px;padding:12px 18px;cursor:pointer;text-align:center;
+  transition:background .25s,color .25s,border-color .25s}
+.cbpills button:hover{border-color:var(--cream)}
+.cbpills button[aria-pressed=true]{background:var(--ochre);color:var(--ink);border-color:var(--ochre)}
+.cbtick{display:flex;align-items:flex-start;gap:12px;cursor:pointer;font-size:15.5px;line-height:1.5}
+.cbtick input{width:20px;height:20px;flex:0 0 auto;margin-top:2px;accent-color:var(--ochre)}
+.cbf .hint{font-size:14.5px;line-height:1.5;opacity:.62;margin-top:8px}
+.cbsend{justify-self:start;font-family:var(--display);font-weight:700;font-size:17.5px;
+  letter-spacing:-.02em;background:var(--ochre);color:var(--ink);border:0;border-radius:999px;
+  padding:15px 30px;cursor:pointer;transition:transform .25s,opacity .25s}
+.cbsend:hover{transform:translateY(-2px)}
+.cberr{background:#C1442E;color:#fff;border-radius:11px;padding:13px 16px;font-size:15px;line-height:1.45}
+.cbhp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.cbdone{text-align:center;padding:clamp(30px,6vw,70px) 0}
+.cbdone b{display:block;font-family:var(--display);font-weight:800;font-stretch:86%;
+  font-size:clamp(32px,5vw,62px);letter-spacing:-.05em;line-height:1}
+.cbdone i{display:block;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.1vw,26px);
+  color:var(--ochre);margin-top:12px}
+.cbdone p{font-size:16px;line-height:1.6;opacity:.82;margin:clamp(16px,2vw,22px) auto 0;max-width:44ch}
+
 /* ===== ROOM 05 · R U SUS? ===== */
 .yh{display:none;background:var(--paper);color:var(--ink);min-height:100svh;
   padding:clamp(40px,5vw,70px) 0 clamp(56px,6vw,90px)}
 body.on-yh .yh{display:block}
 body.on-yh .hi,body.on-yh .pf,body.on-yh .hp,body.on-yh .fm{display:none}
-body.on-pf .yh,body.on-hp .yh,body.on-fm .yh{display:none}
+body.on-pf .yh,body.on-hp .yh,body.on-fm .yh,body.on-sb .yh{display:none}
 .yh h2{font-family:var(--display);font-weight:800;font-stretch:84%;
   font-size:clamp(46px,8vw,104px);letter-spacing:-.05em;line-height:.9}
 .yh h2 span{color:var(--blue)}
@@ -983,6 +1213,47 @@ body.qz-open .yh,body.qz-open .ft,body.qz-open .bar{visibility:hidden}
   </form>
  </div>
 </section>
+
+<!-- ========== ROOM 06 · SUS BLOG ========== -->
+<section class="sb">
+  <div class="wrap">
+    <h2>SUS <span>BLOG</span></h2>
+    <p class="sub">things I went down a rabbit hole on...<br>and you can share yours too.</p>
+    <div class="sbk" id="sbKinds"></div>
+    <p class="sblab first" id="sbLabA">LATEST</p>
+    <div id="sbLead"></div>
+    <p class="sblab" id="sbLabB" hidden>EXPLORE MORE BLOGS</p>
+    <div class="prows" id="sbRows"></div>
+    <button class="sbmore" id="sbMore" hidden></button>
+    <p class="sbempty" id="sbEmpty" hidden>Nothing filed under that one yet.</p>
+    <div class="sbband">
+      <div>
+        <b>Got something to say?</b>
+        <i>A myth worth busting, a greenwash you have spotted, or something you cannot stop
+          thinking about.... write it here for the sus blog!</i>
+      </div>
+      <button class="goWrite">write something &rarr;</button>
+    </div>
+  </div>
+</section>
+
+<div class="rd" id="rd" hidden>
+  <button class="rdx" id="rdClose" aria-label="close">
+    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="rd__in" id="rdIn"></div>
+</div>
+
+<div class="al" id="al" hidden>
+  <button class="rdx" id="alClose" aria-label="close">
+    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="al__in" id="alIn"></div>
+</div>
+
+<div class="cb" id="cb" hidden>
+  <button class="cbx" id="cbClose" aria-label="close">
+    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="cb__in" id="cbIn"></div>
+</div>
 
 <!-- ========== ROOM 05 · R U SUS? ========== -->
 <section class="yh">
@@ -1529,8 +1800,7 @@ const ROOMS=[
  {k:"hp", n:"How I Can Help You", s:"modern problems? modern solutions.",                  live:1},
  {k:"fm", n:"Let's Collaborate",  s:"say hi",                                              live:1},
  {k:"you", n:"R U Sus?",          s:"I am. So, some quick questions?",                     live:1},
- {k:"blog",n:"Sus Blog",          s:"myth-busting, greenwashing, better questions"},
- {k:"irl", n:"Sus IRL",           s:"everything I post, in one place"}
+ {k:"blog",n:"Sus Blog",          s:"Myth busting, greenwashing, being sus",                 live:1}
 ];
 
 const nav=document.getElementById('nav'), navBtn=document.getElementById('navBtn'),
@@ -1551,7 +1821,8 @@ document.getElementById('navSoc').innerHTML=FTSOC;
 function syncDark(){
   const c=document.body.classList;
   const dark = c.contains('on-fm') ||
-    (c.contains('pro-mode') && !c.contains('on-pf') && !c.contains('on-hp') && !c.contains('on-yh'));
+    (c.contains('pro-mode') && !c.contains('on-pf') && !c.contains('on-hp')
+     && !c.contains('on-yh') && !c.contains('on-sb'));
   if(dark!==c.contains('darkroom')) c.toggle('darkroom',dark);
 }
 if(window.MutationObserver)new MutationObserver(syncDark).observe(document.body,{attributes:true,attributeFilter:['class']});
@@ -1561,21 +1832,22 @@ function currentRoom(){
   const c=document.body.classList;
   if(!c.contains('entered'))return '';
   return c.contains('on-pf')?'pf':c.contains('on-hp')?'hp':c.contains('on-fm')?'fm'
-        :c.contains('on-yh')?'you':'hi';
+        :c.contains('on-yh')?'you':c.contains('on-sb')?'blog':'hi';
 }
 
 function goRoom(k){
   closeSheet();
   if(k==='fm'){
-    document.body.classList.remove('on-yh');    /* openForm does not know about it */
+    document.body.classList.remove('on-yh','on-sb');  /* openForm predates them */
     const on=document.querySelector('.wcard[aria-selected="true"]');
     openForm(on?on.dataset.a:'one');            /* keeps the dropdowns in step */
   }else{
     const b=document.body;
-    b.classList.remove('on-pf','on-hp','on-fm','on-yh');
+    b.classList.remove('on-pf','on-hp','on-fm','on-yh','on-sb');
     if(k==='pf')b.classList.add('on-pf');
     if(k==='hp')b.classList.add('on-hp');
     if(k==='you')b.classList.add('on-yh');
+    if(k==='blog')b.classList.add('on-sb');
     window.scrollTo(0,0);
   }
   closeNav();
@@ -1585,7 +1857,7 @@ function goRoom(k){
 function toGate(){
   closeNav(); closeSheet();
   const b=document.body;
-  b.classList.remove('on-pf','on-hp','on-fm','on-yh','entered','leaving');
+  b.classList.remove('on-pf','on-hp','on-fm','on-yh','on-sb','entered','leaving');
   b.classList.add('locked');
   window.scrollTo(0,0);
   document.documentElement.scrollTop=0; b.scrollTop=0;
@@ -2035,6 +2307,366 @@ document.addEventListener('keydown',e=>{
   if(/^[1-9]$/.test(e.key)){ const i=+e.key-1; if(i<q.o.length)pick(i); }
   if(e.key==='Enter'||e.key==='ArrowRight'){ saveAsk(); step(); }
 });
+
+/* ===================== ROOM 06 · SUS BLOG =====================
+   To add a post: copy one block in POSTS, change the fields, put it at the
+   top of the list. Newest first. Fields:
+     id     a short unique tag, never reused
+     kind   rabbit hole | myth-busting | greenwashing | opinion | yours
+     date   as you want it printed, for example 1 Oct 2026
+     by     the byline. Leave it out and it prints Anonymous
+     title  the headline
+     stand  one sentence, under the headline and in the index
+     read   optional, for example 3 min read. Left out, it is counted for you
+     tint   green | ochre | dark | blue, the panel colour behind the icon
+     icon   leaf | bolt | globe | drop | bulb | pen, used when there is no cover
+     cover  optional image file, uploaded next to index.html
+     pos    optional, how the cover sits in the tile, for example 50% 26%
+     body   the article. p, h4, ul, ol and li. Keep the sources in p.src    */
+const POSTS=[
+{id:"email",kind:"rabbit hole",date:"1 Oct 2026",by:"Aarha Shah",tint:"dark",
+ read:"3 min read",cover:"blog-email.jpg",pos:"50% 26%",
+ title:"13 emails before I was awake",
+ stand:"Emails also have a footprint, and the numbers are stranger than you'd think!",
+ body:`
+<p>We all dread waking up to a flood of Outlook notifications, only to send and receive countless
+more throughout the day. And yet, can you picture a workday without them?</p>
+<p>Email has become the backbone of the corporate world. It also carries an environmental cost, and
+once you start adding it up the scale gets strange. A single email works out somewhere between
+0.03g and 26g of CO2 equivalent. On its own, that is nothing. Multiplied across 4.48 billion email
+users, it stops being nothing.</p>
+<h4>Let us break down the numbers</h4>
+<ul>
+<li><b>Every year.</b> An average person's email use emits up to 40kg of CO2e, about the same as
+charging your phone five thousand times.</li>
+<li><b>Every second.</b> With 361.6 billion emails sent daily, that is more than 3.5 million a
+second, which works out at roughly 450kg of CO2e per second. The same as burning 180 litres of
+petrol, every second.</li>
+<li><b>Spam.</b> More than 46% of all email is spam, and storing an unwanted email emits around
+10g of CO2e a year.</li>
+<li><b>At work.</b> The average office worker receives 100 to 120 emails a day, nearly half of it
+spam. For a company of 250 people, one day of email emits as much as driving a petrol car 500km.
+Mumbai to Goa.</li>
+</ul>
+<h4>One thing almost nobody adds</h4>
+<p>Here is the part that usually gets left out, and I would rather say it myself than have someone
+say it to me. Mike Berners-Lee, whose work these numbers come from, has gone on record saying that
+the footprint of sending a single email is trivial. His 2010 figures were picked up and repeated
+for years, including by the UK government, long after he had updated them. And most of what
+actually gets counted is not the sending at all. It is the laptop you typed it on and the phone in
+your hand, both of which exist whether you email or not.</p>
+<p>So why does this statistic keep going round? Because it is small enough to feel actionable and
+big enough to feel alarming, which makes it excellent for a headline and useless for a decision.
+That is worth being sus about.</p>
+<p>The part that does hold up is this.</p>
+<p>Email has roughly a twentieth of the footprint of a handwritten letter. But the volume we send
+today vastly exceeds every letter ever posted. That is the rebound effect: a newer, more efficient
+technology ends up consuming more energy because we use so much more of it.</p>
+<p>We are not getting rid of email. A digital clean-up is still worth doing, less for the carbon
+than for the hours and the attention it hands back. Two things genuinely surprised me. Shorter emails emit less than long ones, and the same email sent from your
+phone has a smaller footprint than one sent from a laptop.</p>
+<h4>Five easy steps for cleaner corporate communication</h4>
+<ol>
+<li>Use Teams or Slack for anything quick.</li>
+<li>Keep the number of people copied in down.</li>
+<li>Send links instead of attachments.</li>
+<li>Skip the 'Thank you' and the 'Noted'.</li>
+<li>Delete old and spam email, and unsubscribe from what you never read.</li>
+</ol>
+<p class="src">Sources: How Bad Are Bananas (The Carbon Footprint of Everything), Fight Climate
+Change, Pawprint, The Guardian, Thales.</p>`},
+
+{id:"specs",kind:"rabbit hole",date:"1 Oct 2026",by:"Aarha Shah",tint:"ochre",
+ read:"2 min read",cover:"blog-specs.jpg",pos:"50% 22%",
+ title:"The hidden cost of seeing clearly",
+ stand:"I cannot live without my specs. So I went looking for what they actually cost.",
+ body:`
+<p>Anyone who knows me, even slightly, knows I cannot live without one thing. My specs. Whether it
+is genetics, screen time or sheer negligence, my glasses are my constant companions, and I like to
+own several pairs, for necessity and for fashion.</p>
+<p>So here is a question that hit me recently. What is the actual cost of seeing clearly? I am not
+talking about money. I am talking about the environmental cost.</p>
+<h4>Four things I did not expect</h4>
+<ul>
+<li>Producing a single pair of eyeglasses emits 8.2 pounds of CO2, roughly the same as running your
+fridge for three days, or driving a petrol car about ten miles.</li>
+<li>In 2021 the eyewear industry sold 2.5 billion units globally. That is a carbon footprint
+equivalent to burning nearly 20 million tonnes of coal.</li>
+<li>Metal and plastic frames both carry a substantial impact. And contact lenses take over 500
+years to decompose, which is longer than it took to build the Great Wall of China.</li>
+<li>Recycling rates for eyewear are shockingly low next to other everyday items, so most of it
+ends up piling into landfill.</li>
+</ul>
+<p>So should I stop wearing glasses or lenses? Not at all. Vision is non-negotiable. But we can
+make better informed, more conscious choices, gradually.</p>
+<p>Brands like ZEISS Vision and Monkeyglasses are stepping up, designing and manufacturing more
+sustainable eyewear and lenses and measuring their footprint along the way. They are the tip of
+the iceberg. For real impact, both the industry and the people buying from it need to shift.</p>
+<p>It will not happen overnight. It is still a shift worth considering. After all, isn't clarity,
+in vision and in awareness, what we are all after?</p>
+<p class="src">Sources: Ground News, Statista, GlobeNewswire, Betterview.</p>`}
+];
+
+const KINDS=["rabbit hole","myth-busting","greenwashing","opinion","yours"];
+const sb=document.getElementById('sbLead'), sbRows=document.getElementById('sbRows'),
+      sbKinds=document.getElementById('sbKinds'), sbEmpty=document.getElementById('sbEmpty'),
+      rd=document.getElementById('rd'), rdIn=document.getElementById('rdIn'),
+      cb=document.getElementById('cb'), cbIn=document.getElementById('cbIn');
+let sbFilter='all';
+
+const ICONS={
+ leaf:'M12 21c0-7 3-12 8-15-1 8-4 12-8 15Zm0 0C7 18 4 13 4 6c5 3 8 8 8 15Z',
+ bolt:'M13 2 4 14h6l-1 8 9-12h-6l1-8Z',
+ globe:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z|M3 12h18|M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21c-2.4-2.5-3.6-5.5-3.6-9S9.6 5.5 12 3Z',
+ drop:'M12 3c4 4.6 6 7.8 6 10.5a6 6 0 0 1-12 0C6 10.8 8 7.6 12 3Z',
+ bulb:'M9 18h6|M10 21h4|M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2h5c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z',
+ pen:'M4 20h4l11-11a2.8 2.8 0 0 0-4-4L4 16v4Z|M14.5 6.5 17.5 9.5'};
+function words(html){ return html.replace(/<[^>]*>/g,' ').split(/\s+/).filter(Boolean).length; }
+function readTime(post){ return post.read || Math.max(1,Math.round(words(post.body)/200))+' min read'; }
+function byLine(post){ return post.by || 'Anonymous'; }
+function meta(post){ return 'SUS BLOG <i>&middot;</i> '+readTime(post); }
+function panel(post){
+  if(post.cover) return '<img src="'+post.cover+'" alt=""'+
+    (post.pos?' style="object-position:'+post.pos+'"':'')+'>';
+  const d=ICONS[post.icon]||ICONS.pen;
+  return '<svg viewBox="0 0 24 24" aria-hidden="true">'+
+    d.split('|').map(x=>'<path d="'+x+'"/>').join('')+'</svg>';
+}
+function rowHTML(x){
+  return '<button class="prow" data-id="'+x.id+'">'+
+    '<span class="prow__img tint-'+x.tint+'">'+panel(x)+'</span>'+
+    '<span class="prow__t"><b>'+x.title+'</b><i>'+x.stand+'</i>'+
+    '<em>By '+byLine(x)+' &nbsp;&middot;&nbsp; '+x.date+'</em></span>'+
+    '<span class="prow__m">'+readTime(x)+'</span>'+
+  '</button>';
+}
+
+function shown(){
+  return sbFilter==='all'?POSTS:POSTS.filter(x=>x.kind===sbFilter);
+}
+
+function drawBlog(){
+  /* the filters only earn their place once there is something to filter */
+  if(POSTS.length<6){ sbKinds.hidden=true; }
+  else{
+    sbKinds.hidden=false;
+    const live=KINDS.filter(k=>POSTS.some(x=>x.kind===k));
+    sbKinds.innerHTML='<button data-k="all" aria-pressed="'+(sbFilter==='all')+'">everything</button>'+
+      live.map(k=>'<button data-k="'+k+'" aria-pressed="'+(sbFilter===k)+'">'+k+'</button>').join('');
+    sbKinds.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+      sbFilter=b.dataset.k; drawBlog();
+    }));
+  }
+  const list=shown();
+  sbEmpty.hidden=!!list.length;
+  document.getElementById('sbLabA').hidden=!list.length;
+  const lead=list[0];
+  sb.innerHTML = lead ? '<button class="lead" data-id="'+lead.id+'">'+
+      '<span class="lead__img tint-'+lead.tint+'">'+panel(lead)+'</span>'+
+      '<span class="lead__t tint-'+lead.tint+'">'+
+        '<span class="lead__m">'+meta(lead)+'</span>'+
+        '<h3>'+lead.title+'</h3>'+
+        '<p>'+lead.stand+'</p>'+
+        '<span class="lead__by">By '+byLine(lead)+' &nbsp;&middot;&nbsp; '+lead.date+'</span>'+
+        '<u>read it <em>&rarr;</em></u>'+
+      '</span></button>' : '';
+  /* two next to it, then the full list behind a button */
+  const more=list.slice(1,3), rest=list.length-3;
+  sbRows.innerHTML=more.map(rowHTML).join('');
+  sbRows.hidden=!more.length;
+  document.getElementById('sbLabB').hidden=!more.length;
+  const mb=document.getElementById('sbMore');
+  mb.hidden = rest<1;
+  mb.textContent = rest<1 ? '' : 'see all '+list.length+' blogs \u2192';
+  wireCards();
+}
+
+function wireCards(){
+  [sb,sbRows].forEach(host=>host.querySelectorAll('[data-id]').forEach(b=>
+    b.addEventListener('click',()=>openPost(b.dataset.id))));
+}
+
+/* every post, in one list */
+const al=document.getElementById('al'), alIn=document.getElementById('alIn');
+function openAll(){
+  const list=shown();
+  alIn.innerHTML='<h3>EVERY <span>BLOG</span></h3>'+
+    '<div class="prows">'+list.map(rowHTML).join('')+'</div>';
+  alIn.querySelectorAll('[data-id]').forEach(b=>
+    b.addEventListener('click',()=>{ closeAll(); openPost(b.dataset.id); }));
+  al.hidden=false;
+  document.body.classList.add('al-open');
+  document.documentElement.style.overflow='hidden';
+  al.scrollTop=0;
+}
+function closeAll(){
+  al.hidden=true;
+  document.body.classList.remove('al-open');
+  if(rd.hidden&&cb.hidden)document.documentElement.style.overflow='';
+}
+document.getElementById('alClose').addEventListener('click',closeAll);
+document.getElementById('sbMore').addEventListener('click',openAll);
+
+function openPost(id){
+  const i=POSTS.findIndex(x=>x.id===id); if(i<0)return;
+  const post=POSTS[i], next=POSTS[(i+1)%POSTS.length];
+  rdIn.innerHTML=
+    '<p class="rd__m">'+meta(post)+'</p>'+
+    '<h1>'+post.title+'</h1>'+
+    '<p class="rd__stand">'+post.stand+'</p>'+
+    '<p class="rd__by"><b>By '+byLine(post)+'</b><i>&middot;</i><span>'+post.date+'</span></p>'+
+    (post.cover?'<div class="rd__hero"><img src="'+post.cover+'" alt=""></div>':'')+
+    '<div class="rd__body">'+post.body+'</div>'+
+    '<div class="rd__end">'+
+      (POSTS.length>1?'<button class="rd__next" data-id="'+next.id+'">'+
+        '<span><small>read next</small><b>'+next.title+'</b></span>'+
+        '<span class="ar">&rarr;</span></button>':'')+
+      '<div class="rd__ask"><i>got something to say?</i>'+
+      '<button class="rd__cta goWrite">write something &rarr;</button></div>'+
+    '</div>';
+  rd.hidden=false;
+  document.body.classList.add('rd-open');
+  document.documentElement.style.overflow='hidden';
+  rd.scrollTop=0;
+  const nx=rdIn.querySelector('.rd__next');
+  if(nx)nx.addEventListener('click',()=>openPost(nx.dataset.id));
+  rdIn.querySelectorAll('.goWrite').forEach(b=>b.addEventListener('click',openWrite));
+}
+function closePost(){
+  rd.hidden=true;
+  document.body.classList.remove('rd-open');
+  if(cb.hidden&&al.hidden)document.documentElement.style.overflow='';
+}
+document.getElementById('rdClose').addEventListener('click',closePost);
+
+/* ---------- contribute ---------- */
+const CKIND=["a myth worth busting","a greenwash I spotted","an explainer","an opinion","something else"];
+const CRED=[["full","my full name"],["first","just my first name"],
+            ["alias","a name I will give you"],["anon","keep me anonymous"]];
+let cKind='', cCred='';
+
+function openWrite(){
+  cKind=''; cCred='';
+  cbIn.innerHTML=
+   '<h3>Got something <span>to say?</span></h3>'+
+   '<p class="cb__lead">write it, send it, and it might go up on the Sus Blog!</p>'+
+   '<p class="cb__note">Anything between 150 and 600 words reads well on a phone. I read everything '+
+   'and I reply to most of it, and if it is something crazy and breakthrough it might just go up on '+
+   'the wall here. Your name and email are for me, and you can stay anonymous on the page if you '+
+   'want.</p>'+
+   '<div class="cbf">'+
+     '<div><label class="lb">What are you sharing?</label><div class="cbpills" id="cbK">'+
+       CKIND.map(k=>'<button type="button" data-k="'+k+'" aria-pressed="false">'+k+'</button>').join('')+
+     '</div></div>'+
+     '<div><label class="lb" for="cbT">A title for it</label>'+
+       '<input id="cbT" type="text" placeholder="say it in a few words"></div>'+
+     '<div><label class="lb" for="cbP">The piece itself</label>'+
+       '<textarea id="cbP" placeholder="150 to 600 words is the sweet spot"></textarea>'+
+       '<p class="hint" id="cbCount">0 words</p></div>'+
+     '<div><label class="lb" for="cbI">A link to an image <em>(optional)</em></label>'+
+       '<input id="cbI" type="url" placeholder="Drive, Dropbox, anywhere I can open it">'+
+       '<p class="hint">I cannot take file uploads here, so a link is the way. No image is fine too.</p></div>'+
+     '<div><label class="lb">How should I credit you?</label><div class="cbpills" id="cbC">'+
+       CRED.map(c=>'<button type="button" data-c="'+c[0]+'" aria-pressed="false">'+c[1]+'</button>').join('')+
+     '</div><div id="cbAliasWrap" hidden style="margin-top:14px">'+
+       '<input id="cbAlias" type="text" placeholder="the name to show on the page"></div></div>'+
+     '<div class="two" style="display:grid;gap:clamp(20px,2.2vw,26px);grid-template-columns:1fr 1fr">'+
+       '<div><label class="lb" for="cbN">Your name</label>'+
+         '<input id="cbN" type="text" autocomplete="name" placeholder="so I know whose fantastic piece this is"></div>'+
+       '<div><label class="lb" for="cbE">Your email</label>'+
+         '<input id="cbE" type="email" autocomplete="email" placeholder="so I can write back to you"></div>'+
+     '</div>'+
+     '<label class="cbtick"><input id="cbOk" type="checkbox">'+
+       '<span>Happy for this to be edited for length and published on YAMS, with the credit I picked above.</span></label>'+
+     '<input class="cbhp" id="cbHp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">'+
+     '<div id="cbErr"></div>'+
+     '<button class="cbsend" id="cbSend">send it in &rarr;</button>'+
+   '</div>';
+  cb.hidden=false;
+  document.body.classList.add('cb-open');
+  document.documentElement.style.overflow='hidden';
+  cb.scrollTop=0;
+  document.querySelectorAll('#cbK button').forEach(b=>b.addEventListener('click',()=>{
+    cKind=b.dataset.k;
+    document.querySelectorAll('#cbK button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  }));
+  document.querySelectorAll('#cbC button').forEach(b=>b.addEventListener('click',()=>{
+    cCred=b.dataset.c;
+    document.querySelectorAll('#cbC button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    document.getElementById('cbAliasWrap').hidden = cCred!=='alias';
+  }));
+  const pc=document.getElementById('cbP');
+  pc.addEventListener('input',()=>{
+    const n=pc.value.split(/\s+/).filter(Boolean).length;
+    document.getElementById('cbCount').textContent=n+(n===1?' word':' words');
+  });
+  document.getElementById('cbSend').addEventListener('click',sendWrite);
+}
+function closeWrite(){
+  cb.hidden=true;
+  document.body.classList.remove('cb-open');
+  if(rd.hidden&&al.hidden)document.documentElement.style.overflow='';
+}
+document.getElementById('cbClose').addEventListener('click',closeWrite);
+
+async function sendWrite(){
+  const g=id=>document.getElementById(id);
+  const err=g('cbErr'), btn=g('cbSend');
+  const val={title:g('cbT').value.trim(),piece:g('cbP').value.trim(),
+    img:g('cbI').value.trim(),name:g('cbN').value.trim(),email:g('cbE').value.trim(),
+    alias:g('cbAlias')?g('cbAlias').value.trim():''};
+  ['cbT','cbP','cbN','cbE'].forEach(id=>g(id).classList.remove('bad'));
+  const miss=[];
+  if(!cKind)miss.push('what kind of thing this is');
+  if(!val.title){miss.push('a title');g('cbT').classList.add('bad');}
+  if(val.piece.split(/\s+/).filter(Boolean).length<40){miss.push('a bit more of the piece');g('cbP').classList.add('bad');}
+  if(!val.name){miss.push('your name');g('cbN').classList.add('bad');}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.email)){miss.push('an email I can reply to');g('cbE').classList.add('bad');}
+  if(!cCred)miss.push('how to credit you');
+  if(cCred==='alias'&&!val.alias)miss.push('the name to show');
+  if(!g('cbOk').checked)miss.push('the tick box at the end');
+  if(miss.length){
+    err.innerHTML='<p class="cberr">Still need '+miss.join(', ').replace(/, ([^,]*)$/,' and $1')+'.</p>';
+    err.scrollIntoView({block:'center',behavior:'smooth'});
+    return;
+  }
+  if(g('cbHp').value)return;
+  btn.disabled=true; btn.textContent='sending...';
+  const credit=(CRED.find(c=>c[0]===cCred)||[])[1];
+  try{
+    const r=await fetch('https://api.web3forms.com/submit',{method:'POST',
+      headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify({access_key:'28f3eaaa-9149-40ec-b0b0-ec89b91e3ec4',
+        subject:'Sus Blog submission: '+val.title,
+        from_name:'YAMS website',
+        message:'KIND: '+cKind+'\nTITLE: '+val.title+
+          '\n\n'+val.piece+
+          '\n\nimage: '+(val.img||'none')+
+          '\n\nfrom: '+val.name+' <'+val.email+'>'+
+          '\ncredit as: '+credit+(val.alias?' ('+val.alias+')':'')+
+          '\nconsent given: yes'})});
+    if(!r.ok)throw new Error('post failed');
+    cbIn.innerHTML='<div class="cbdone"><b>got it.</b>'+
+      '<i>we\'ll figure.</i>'+
+      '<p>I read everything that comes in here, and I will write back either way. '+
+      'If it goes up, you will know before anyone else does.</p>'+
+      '<button class="cbsend" style="margin-top:26px" id="cbBye">back to the blog</button></div>';
+    document.getElementById('cbBye').addEventListener('click',closeWrite);
+    cb.scrollTop=0;
+  }catch(e){
+    btn.disabled=false; btn.innerHTML='send it in &rarr;';
+    err.innerHTML='<p class="cberr">That did not go through. Check your connection and try once more.</p>';
+  }
+}
+
+document.querySelectorAll('.goWrite').forEach(b=>b.addEventListener('click',openWrite));
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  if(!cb.hidden)return closeWrite();
+  if(!rd.hidden)return closePost();
+  if(!al.hidden)return closeAll();
+});
+drawBlog();
 
 </script>
 </body>
