@@ -1828,6 +1828,27 @@ function syncDark(){
 if(window.MutationObserver)new MutationObserver(syncDark).observe(document.body,{attributes:true,attributeFilter:['class']});
 syncDark();
 
+let lockY=0, lockN=0;
+function lockScroll(){
+  if(lockN++)return;
+  lockY=window.scrollY||document.documentElement.scrollTop||0;
+  const b=document.body;
+  b.style.position='fixed';
+  b.style.top=(-lockY)+'px';
+  b.style.left='0';
+  b.style.right='0';
+  b.style.width='100%';
+  document.documentElement.style.overflow='hidden';
+}
+function unlockScroll(){
+  lockN=Math.max(0,lockN-1);
+  if(lockN)return;
+  const b=document.body;
+  b.style.position=''; b.style.top=''; b.style.left=''; b.style.right=''; b.style.width='';
+  document.documentElement.style.overflow='';
+  window.scrollTo(0,lockY);
+}
+
 function currentRoom(){
   const c=document.body.classList;
   if(!c.contains('entered'))return '';
@@ -1903,7 +1924,7 @@ function openNav(){
   buildNav();
   nav.hidden=false;
   document.body.classList.add('nav-open');
-  document.documentElement.style.overflow='hidden';
+  lockScroll();
   navBtn.setAttribute('aria-expanded','true');
   requestAnimationFrame(()=>nav.classList.add('is-on'));
 }
@@ -1911,7 +1932,7 @@ function closeNav(){
   if(!document.body.classList.contains('nav-open'))return;
   nav.classList.remove('is-on');
   document.body.classList.remove('nav-open');
-  document.documentElement.style.overflow='';
+  unlockScroll();
   navBtn.setAttribute('aria-expanded','false');
   setTimeout(()=>{if(!document.body.classList.contains('nav-open'))nav.hidden=true;},560);
 }
@@ -2079,14 +2100,14 @@ function openQuiz(k){
   QK=k; QI=0; QA=QUIZ[k].q.map(()=>[]); QX={}; QSTART=Date.now();
   qz.hidden=false;
   document.body.classList.add('qz-open');
-  document.documentElement.style.overflow='hidden';
+  lockScroll();
   drawQ();
   fitQz();
 }
 function closeQuiz(){
   qz.hidden=true;
   document.body.classList.remove('qz-open');
-  document.documentElement.style.overflow='';
+  unlockScroll();
   document.documentElement.style.backgroundColor='';
   fitQz();
 }
@@ -2496,13 +2517,13 @@ function openAll(){
     b.addEventListener('click',()=>{ closeAll(); openPost(b.dataset.id); }));
   al.hidden=false;
   document.body.classList.add('al-open');
-  document.documentElement.style.overflow='hidden';
+  lockScroll();
   al.scrollTop=0;
 }
 function closeAll(){
   al.hidden=true;
   document.body.classList.remove('al-open');
-  if(rd.hidden&&cb.hidden)document.documentElement.style.overflow='';
+  unlockScroll();
 }
 document.getElementById('alClose').addEventListener('click',closeAll);
 document.getElementById('sbMore').addEventListener('click',openAll);
@@ -2526,7 +2547,7 @@ function openPost(id){
     '</div>';
   rd.hidden=false;
   document.body.classList.add('rd-open');
-  document.documentElement.style.overflow='hidden';
+  lockScroll();
   rd.scrollTop=0;
   const nx=rdIn.querySelector('.rd__next');
   if(nx)nx.addEventListener('click',()=>openPost(nx.dataset.id));
@@ -2535,7 +2556,7 @@ function openPost(id){
 function closePost(){
   rd.hidden=true;
   document.body.classList.remove('rd-open');
-  if(cb.hidden&&al.hidden)document.documentElement.style.overflow='';
+  unlockScroll();
 }
 document.getElementById('rdClose').addEventListener('click',closePost);
 
@@ -2584,7 +2605,7 @@ function openWrite(){
    '</div>';
   cb.hidden=false;
   document.body.classList.add('cb-open');
-  document.documentElement.style.overflow='hidden';
+  lockScroll();
   cb.scrollTop=0;
   document.querySelectorAll('#cbK button').forEach(b=>b.addEventListener('click',()=>{
     cKind=b.dataset.k;
@@ -2605,7 +2626,7 @@ function openWrite(){
 function closeWrite(){
   cb.hidden=true;
   document.body.classList.remove('cb-open');
-  if(rd.hidden&&al.hidden)document.documentElement.style.overflow='';
+  unlockScroll();
 }
 document.getElementById('cbClose').addEventListener('click',closeWrite);
 
@@ -2627,7 +2648,7 @@ async function sendWrite(){
   if(!g('cbOk').checked)miss.push('the tick box at the end');
   if(miss.length){
     err.innerHTML='<p class="cberr">Still need '+miss.join(', ').replace(/, ([^,]*)$/,' and $1')+'.</p>';
-    err.scrollIntoView({block:'center',behavior:'smooth'});
+    cb.scrollTo({top:Math.max(0,err.offsetTop-220),behavior:'smooth'});
     return;
   }
   if(g('cbHp').value)return;
@@ -2646,10 +2667,9 @@ async function sendWrite(){
           '\ncredit as: '+credit+(val.alias?' ('+val.alias+')':'')+
           '\nconsent given: yes'})});
     if(!r.ok)throw new Error('post failed');
-    cbIn.innerHTML='<div class="cbdone"><b>got it.</b>'+
-      '<i>we\'ll figure.</i>'+
-      '<p>I read everything that comes in here, and I will write back either way. '+
-      'If it goes up, you will know before anyone else does.</p>'+
+    cbIn.innerHTML='<div class="cbdone"><b>super, got it!</b>'+
+      '<i>thanks for sharing your thoughts</i>'+
+      '<p>I will read your piece and write back to you soon.</p>'+
       '<button class="cbsend" style="margin-top:26px" id="cbBye">back to the blog</button></div>';
     document.getElementById('cbBye').addEventListener('click',closeWrite);
     cb.scrollTop=0;
